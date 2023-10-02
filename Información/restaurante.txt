@@ -1,0 +1,50 @@
+# mesas:
+	# id - Numero de mesa (int)
+	# Capacidad de personas (int)
+	# Estado:	(lo hacemos tipo SET?)
+		0: Libre
+		1: Ocupada
+		2: Atendida
+		3: Reservada ?
+
+# producto:
+	# id (int)
+	# ¿codigo? (C001, B001) 
+	# nombre (varchar)
+	# Descripción (varchar)
+	# Precio (double o float)
+	# id_Categoria (tabla categoria?)
+
+# Categoria:
+	# id
+	# nombre(varchar)
+
+# pedidos:
+	# id
+	# id_mesa
+	# id_contenido_pedido
+	# fecha del pedido (datetime)
+	# Estado pendiente/pagado (boolean)
+
+# contenido_pedido:
+	# id
+	# id_pedido
+	# id_producto
+	# cantidad del producto
+	# estado pendiente/Entregado (boolean)	
+
+# Reservas (asociado a una mesa)
+	# id 
+	# id_mesa
+	# nombre (varchar)
+	# Dni (varchar)
+	# fecha y hora de reserva (datetime)
+	# Estado (viente o no vigente) (boolean)
+
+# meseros
+	# id
+	# nombre (varchar)
+	# apellido (varchar)
+	# dni (varchar)
+	# password (varchar)
+
