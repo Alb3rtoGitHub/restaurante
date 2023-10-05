@@ -1,24 +1,25 @@
 package restogrupo51.entidades;
 
 public class PedidoProducto {
+
     private int idPedidoProducto;
-    private int idPedido;
-    private int idProducto;
+    private Pedido pedido;
+    private Producto producto;
     private int cantidad;
 
     public PedidoProducto() {
     }
 
-    public PedidoProducto(int idPedido, int idProducto, int cantidad) {
-        this.idPedido = idPedido;
-        this.idProducto = idProducto;
+    public PedidoProducto(Pedido pedido, Producto producto, int cantidad) {
+        this.pedido = pedido;
+        this.producto = producto;
         this.cantidad = cantidad;
     }
 
-    public PedidoProducto(int idPedidoProducto, int idPedido, int idProducto, int cantidad) {
+    public PedidoProducto(int idPedidoProducto, Pedido pedido, Producto producto, int cantidad) {
         this.idPedidoProducto = idPedidoProducto;
-        this.idPedido = idPedido;
-        this.idProducto = idProducto;
+        this.pedido = pedido;
+        this.producto = producto;
         this.cantidad = cantidad;
     }
 
@@ -30,20 +31,20 @@ public class PedidoProducto {
         this.idPedidoProducto = idPedidoProducto;
     }
 
-    public int getIdPedido() {
-        return idPedido;
+    public Pedido getPedido() {
+        return pedido;
     }
 
-    public void setIdPedido(int idPedido) {
-        this.idPedido = idPedido;
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public Producto getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {
@@ -56,8 +57,7 @@ public class PedidoProducto {
 
     @Override
     public String toString() {
-        return "ID: " + idPedidoProducto + ", ID Pedido: " + idPedido + ", ID Producto: " + idProducto + ", Cantidad: " + cantidad;
+        return "ID: " + idPedidoProducto + ", Pedido: " + pedido + ", Producto: " + producto + ", Cantidad: " + cantidad;
     }
-    
-    
+
 }

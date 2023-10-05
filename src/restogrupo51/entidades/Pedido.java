@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 public class Pedido {
     private int idPedido;
-    private int idMesa;
+    private Mesa mesa;
     private String nombreMesero;
     private LocalDateTime FechaHora;
     private double importe;
@@ -18,17 +18,17 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(int idPedido, int idMesa, String nombreMesero, LocalDateTime FechaHora, double importe, boolean cobrado) {
-        this.idPedido = idPedido;
-        this.idMesa = idMesa;
+    public Pedido(Mesa mesa, String nombreMesero, LocalDateTime FechaHora, double importe, boolean cobrado) {
+        this.mesa = mesa;
         this.nombreMesero = nombreMesero;
         this.FechaHora = FechaHora;
         this.importe = importe;
         this.cobrado = cobrado;
     }
 
-    public Pedido(int idMesa, String nombreMesero, LocalDateTime FechaHora, double importe, boolean cobrado) {
-        this.idMesa = idMesa;
+    public Pedido(int idPedido, Mesa mesa, String nombreMesero, LocalDateTime FechaHora, double importe, boolean cobrado) {
+        this.idPedido = idPedido;
+        this.mesa = mesa;
         this.nombreMesero = nombreMesero;
         this.FechaHora = FechaHora;
         this.importe = importe;
@@ -39,8 +39,8 @@ public class Pedido {
         return idPedido;
     }
 
-    public int getIdMesa() {
-        return idMesa;
+    public Mesa getMesa() {
+        return mesa;
     }
 
     public String getNombreMesero() {
@@ -63,8 +63,8 @@ public class Pedido {
         this.idPedido = idPedido;
     }
 
-    public void setIdMesa(int idMesa) {
-        this.idMesa = idMesa;
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     public void setNombreMesero(String nombreMesero) {
