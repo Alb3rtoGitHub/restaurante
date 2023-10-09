@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2023 a las 22:24:11
+-- Tiempo de generación: 09-10-2023 a las 21:22:47
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `mesa` (
-  `id_mesa` int(11) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `estado_mesa` tinyint(1) NOT NULL,
-  `capacidad` int(11) NOT NULL
+  `idMesa` int(11) NOT NULL,
+  `numeroMesa` int(11) NOT NULL,
+  `capacidad` int(11) NOT NULL,
+  `disponibilidad` tinyint(1) NOT NULL,
+  `estadoMesa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -41,10 +42,10 @@ CREATE TABLE `mesa` (
 --
 
 CREATE TABLE `pedido` (
-  `id_pedido` int(11) NOT NULL,
-  `id_mesa` int(11) NOT NULL,
-  `nombre_mesero` varchar(30) NOT NULL,
-  `fecha_hora` datetime NOT NULL,
+  `idPedido` int(11) NOT NULL,
+  `idMesa` int(11) NOT NULL,
+  `nombreMesero` varchar(30) NOT NULL,
+  `fechaHoraPedido` datetime NOT NULL,
   `importe` double NOT NULL,
   `cobrada` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -56,9 +57,9 @@ CREATE TABLE `pedido` (
 --
 
 CREATE TABLE `pedidoproducto` (
-  `id_pedido_prod` int(11) NOT NULL,
-  `id_pedido` int(11) NOT NULL,
-  `id_producto` int(11) NOT NULL,
+  `idPedidoProducto` int(11) NOT NULL,
+  `idPedido` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -69,10 +70,12 @@ CREATE TABLE `pedidoproducto` (
 --
 
 CREATE TABLE `producto` (
-  `id_producto` int(11) NOT NULL,
-  `nombre_producto` varchar(30) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `codigo` varchar(40) NOT NULL,
+  `nombreProducto` varchar(30) NOT NULL,
   `precio` double NOT NULL,
-  `stock` int(11) NOT NULL
+  `stock` int(11) NOT NULL,
+  `estadoProducto` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -83,28 +86,28 @@ CREATE TABLE `producto` (
 -- Indices de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  ADD PRIMARY KEY (`id_mesa`);
+  ADD PRIMARY KEY (`idMesa`);
 
 --
 -- Indices de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`id_pedido`),
-  ADD KEY `id_mesa` (`id_mesa`);
+  ADD PRIMARY KEY (`idPedido`),
+  ADD KEY `id_mesa` (`idMesa`);
 
 --
 -- Indices de la tabla `pedidoproducto`
 --
 ALTER TABLE `pedidoproducto`
-  ADD PRIMARY KEY (`id_pedido_prod`),
-  ADD KEY `id_pedido` (`id_pedido`,`id_producto`),
-  ADD KEY `id_producto` (`id_producto`);
+  ADD PRIMARY KEY (`idPedidoProducto`),
+  ADD KEY `id_pedido` (`idPedido`,`idProducto`),
+  ADD KEY `pedidoproducto_ibfk_2` (`idProducto`);
 
 --
 -- Indices de la tabla `producto`
 --
 ALTER TABLE `producto`
-  ADD PRIMARY KEY (`id_producto`);
+  ADD PRIMARY KEY (`idProducto`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -114,25 +117,25 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `id_mesa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `id_pedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `pedidoproducto`
 --
 ALTER TABLE `pedidoproducto`
-  MODIFY `id_pedido_prod` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idPedidoProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
@@ -142,14 +145,14 @@ ALTER TABLE `producto`
 -- Filtros para la tabla `pedido`
 --
 ALTER TABLE `pedido`
-  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`id_mesa`) REFERENCES `mesa` (`id_mesa`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedido_ibfk_1` FOREIGN KEY (`idMesa`) REFERENCES `mesa` (`idMesa`);
 
 --
 -- Filtros para la tabla `pedidoproducto`
 --
 ALTER TABLE `pedidoproducto`
-  ADD CONSTRAINT `pedidoproducto_ibfk_1` FOREIGN KEY (`id_pedido`) REFERENCES `pedido` (`id_pedido`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `pedidoproducto_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `producto` (`id_producto`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `pedidoproducto_ibfk_1` FOREIGN KEY (`idPedido`) REFERENCES `pedido` (`idPedido`) ON DELETE CASCADE,
+  ADD CONSTRAINT `pedidoproducto_ibfk_2` FOREIGN KEY (`idProducto`) REFERENCES `producto` (`idProducto`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
