@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-10-2023 a las 21:22:47
+-- Tiempo de generación: 09-10-2023 a las 22:39:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -71,7 +71,7 @@ CREATE TABLE `pedidoproducto` (
 
 CREATE TABLE `producto` (
   `idProducto` int(11) NOT NULL,
-  `codigo` varchar(40) NOT NULL,
+  `codigoProducto` varchar(40) NOT NULL,
   `nombreProducto` varchar(30) NOT NULL,
   `precio` double NOT NULL,
   `stock` int(11) NOT NULL,
