@@ -6,28 +6,28 @@ public class Pedido {
     private int idPedido;
     private Mesa mesa;
     private String nombreMesero;
-    private LocalDateTime FechaHora;
+    private LocalDateTime fechaHoraPedido;
     private double importe;
-    private boolean cobrado;
+    private boolean cobrada;
 
     public Pedido() {
     }
 
-    public Pedido(Mesa mesa, String nombreMesero, LocalDateTime FechaHora, double importe, boolean cobrado) {
+    public Pedido(Mesa mesa, String nombreMesero, LocalDateTime fechaHoraPedido, double importe, boolean cobrada) {
         this.mesa = mesa;
         this.nombreMesero = nombreMesero;
-        this.FechaHora = FechaHora;
+        this.fechaHoraPedido = fechaHoraPedido;
         this.importe = importe;
-        this.cobrado = cobrado;
+        this.cobrada = cobrada;
     }
 
-    public Pedido(int idPedido, Mesa mesa, String nombreMesero, LocalDateTime FechaHora, double importe, boolean cobrado) {
+    public Pedido(int idPedido, Mesa mesa, String nombreMesero, LocalDateTime fechaHoraPedido, double importe, boolean cobrada) {
         this.idPedido = idPedido;
         this.mesa = mesa;
         this.nombreMesero = nombreMesero;
-        this.FechaHora = FechaHora;
+        this.fechaHoraPedido = fechaHoraPedido;
         this.importe = importe;
-        this.cobrado = cobrado;
+        this.cobrada = cobrada;
     }
 
     public int getIdPedido() {
@@ -42,16 +42,16 @@ public class Pedido {
         return nombreMesero;
     }
 
-    public LocalDateTime getFechaHora() {
-        return FechaHora;
+    public LocalDateTime getFechaHoraPedido() {
+        return fechaHoraPedido;
     }
 
     public double getImporte() {
         return importe;
     }
 
-    public boolean isCobrado() {
-        return cobrado;
+    public boolean isCobrada() {
+        return cobrada;
     }
 
     public void setIdPedido(int idPedido) {
@@ -66,21 +66,21 @@ public class Pedido {
         this.nombreMesero = nombreMesero;
     }
 
-    public void setFechaHora(LocalDateTime FechaHora) {
-        this.FechaHora = FechaHora;
+    public void setFechaHoraPedido(LocalDateTime fechaHoraPedido) {
+        this.fechaHoraPedido = fechaHoraPedido;
     }
 
     public void setImporte(double importe) {
         this.importe = importe;
     }
 
-    public void setCobrado(boolean cobrado) {
-        this.cobrado = cobrado;
+    public void setCobrada(boolean cobrada) {
+        this.cobrada = cobrada;
     }
 
     @Override
     public String toString() {
-        return "Pedido{" + "idPedido=" + idPedido + ", mesa=" + mesa + ", nombreMesero=" + nombreMesero + ", FechaHora=" + FechaHora + ", importe=" + importe + ", cobrado=" + cobrado + '}';
+        return "Pedido{" + "idPedido=" + idPedido + ", mesa=" + mesa + ", nombreMesero=" + nombreMesero + ", fechaHoraPedido=" + fechaHoraPedido + ", importe=" + importe + ", cobrada=" + cobrada + '}';
     }
     
 
