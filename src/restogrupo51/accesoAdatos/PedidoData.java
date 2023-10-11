@@ -130,7 +130,7 @@ public class PedidoData {
         return pedido;
     }
     
-    public List<Pedido> listarPedidos(){
+    public ArrayList<Pedido> listarPedidos(){
         ArrayList<Pedido> pedidos = new ArrayList<>();
         mesaData = new MesaData();
         
@@ -167,7 +167,7 @@ public class PedidoData {
         return pedidos;
     }
     
-    public List<Pedido> listarPedidoPorMesa(int idMesa){
+    public ArrayList<Pedido> listarPedidoPorMesa(int idMesa){
         ArrayList<Pedido> pedidos = new ArrayList<>();
         mesaData = new MesaData();
         
