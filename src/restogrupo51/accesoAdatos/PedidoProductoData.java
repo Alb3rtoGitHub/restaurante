@@ -100,7 +100,7 @@ public class PedidoProductoData {
                 
                 pedidoproduc = new PedidoProducto();
                 pedidoproduc.setIdPedidoProducto(idPP);
-                //pedidoproduc.setPedido(pedidodata.buscarPedido(res.getInt("idPedido")));
+                pedidoproduc.setPedido(pedidodata.buscarPedido(res.getInt("idPedido")));
                 pedidoproduc.setProducto(productodata.buscarProducto(res.getInt("idProducto")));
                 pedidoproduc.setCantidad(res.getInt("cantidad"));
                 
@@ -128,7 +128,7 @@ public class PedidoProductoData {
                 
                 PedidoProducto pedidop = new PedidoProducto();
                 pedidop.setIdPedidoProducto(res.getInt("idPedidoProducto"));
-                //pedidop.setPedido(pedidodata.buscarPedido(res.getInt("idPedido")));
+                pedidop.setPedido(pedidodata.buscarPedido(res.getInt("idPedido")));
                 pedidop.setProducto(productodata.buscarProducto(res.getInt("idProducto")));
                 pedidop.setCantidad(res.getInt("cantidad"));
                 
