@@ -171,7 +171,7 @@ public class PedidoData {
         ArrayList<Pedido> pedidos = new ArrayList<>();
         mesaData = new MesaData();
         
-        String sql = "SELECT * FROM pedido WHERE idMesa = ? AND estadoPedido = 1";
+        String sql = "SELECT * FROM pedido WHERE idMesa = ?";
         
         try{
             PreparedStatement ps = con.prepareStatement(sql);
