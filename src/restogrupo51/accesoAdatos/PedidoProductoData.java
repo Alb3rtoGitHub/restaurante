@@ -194,7 +194,7 @@ public class PedidoProductoData {
     }
     
     
-    public double calcularTotal(int idMesa, int idPedido){
+    public double calcularTotal(int idPedido){
         String sql = "SELECT (pr.precio * pp.cantidad) AS subtotal FROM pedidoproducto pp INNER JOIN producto pr ON (pp.idProducto = pr.idProducto) INNER JOIN pedido pe ON (pp.idPedido = pe.idPedido) WHERE pp.idPedido = ?";
         double subtotal = 0, total = 0;
         

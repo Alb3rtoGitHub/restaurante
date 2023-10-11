@@ -32,20 +32,20 @@ public class testPedidoProductoData {
         /* GUARDAR PEDIDO PRODUCTO */
         
         
-        //PedidoProducto newpp = new PedidoProducto(pedidodata.buscarPedido(3), productoData.buscarProducto(2), 3);
+        //PedidoProducto newpp = new PedidoProducto(pedidodata.buscarPedido(1), productoData.buscarProducto(3), 2);
         
         //ppData.agregarPedidoProducto(newpp);
         
         /* MODIFICAR PEDIDO PRODUCTO */
-        //PedidoProducto modpp = new PedidoProducto(6, pedidodata.buscarPedido(1), productoData.buscarProducto(2), 1);
+        //PedidoProducto modpp = new PedidoProducto(1, pedidodata.buscarPedido(1), productoData.buscarProducto(2), 4);
         //ppData.modificarPedidoConProducto(modpp);
         
         /* ELIMINAR PEDIDO PRODUCTO */
-        //ppData.eliminarPedidoConProducto(6);
+        //ppData.eliminarPedidoConProducto(3);
         
         /* BUSCAR PEDIDO PRODUCTO */
         /*
-        PedidoProducto buscado = ppData.buscarPedidoConProducto(5);
+        PedidoProducto buscado = ppData.buscarPedidoConProducto(1);
         System.out.println("ID: " + buscado.getIdPedidoProducto());
         System.out.println("Mesa: " + buscado.getPedido().getMesa().getNumeroMesa());
         System.out.println("Mesero: " + buscado.getPedido().getNombreMesero());
@@ -74,13 +74,13 @@ public class testPedidoProductoData {
         }
         */
         /* CALCULAR SUBTOTAL DE UN PEDIDO PRODUCTO */
-        //System.out.println("Subtotal: " + ppData.calcularSubtotal(2)); ;
+        //System.out.println("Subtotal: " + ppData.calcularSubtotal(1)); ;
         
         /* CALCULAR TOTAL DE UN PEDIDO */
-        //System.out.println("Total: "  + ppData.calcularTotal(1, 1));
+        //System.out.println("Total: "  + ppData.calcularTotal(1));
         
         /* TOTAL EN UN DIA */
-        //System.out.println("Total: " + ppData.precioTotalXFecha(LocalDate.of(2023, 10, 10))); //Posible metodo pero no puedo buscar por fecha;
+        //System.out.println("Total: " + ppData.precioTotalXFecha(LocalDate.of(2023, 10, 11))); //Posible metodo pero no puedo buscar por fecha;
         
         /* LISTAR PEDIDOS MESEROS EN FECHA */
         /*
@@ -94,7 +94,7 @@ public class testPedidoProductoData {
         */
         /* LISTAR PEDIDOS MESA ENTRE FECHA Y HORA */
         /*
-        for (Pedido pedidofh : ppData.listarPedidosXMesaEntreFechaYHora(1, LocalDateTime.of(2023, 10, 8, 10, 26, 00), LocalDateTime.of(2023, 10, 11, 10, 30, 00))) {
+        for (Pedido pedidofh : ppData.listarPedidosXMesaEntreFechaYHora(1, LocalDateTime.of(2023, 10, 8, 10, 10, 00), LocalDateTime.of(2023, 10, 11, 10, 30, 00))) {
             System.out.println("ID: " + pedidofh.getIdPedido());
             System.out.println("Mesa: " + pedidofh.getMesa().getIdMesa());
             System.out.println("Mesero: " + pedidofh.getNombreMesero());
