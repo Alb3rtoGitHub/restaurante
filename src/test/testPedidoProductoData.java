@@ -31,8 +31,7 @@ public class testPedidoProductoData {
         PedidoData pedidodata = new PedidoData();
         /* GUARDAR PEDIDO PRODUCTO */
         
-        
-        //PedidoProducto newpp = new PedidoProducto(pedidodata.buscarPedido(1), productoData.buscarProducto(3), 2);
+        //PedidoProducto newpp = new PedidoProducto(pedidodata.buscarPedido(3), productoData.buscarProducto(2), 4);
         
         //ppData.agregarPedidoProducto(newpp);
         
@@ -80,9 +79,9 @@ public class testPedidoProductoData {
         //System.out.println("Total: "  + ppData.calcularTotal(1));
         
         /* TOTAL EN UN DIA */
-        //System.out.println("Total: " + ppData.precioTotalXFecha(LocalDate.of(2023, 10, 11))); //Posible metodo pero no puedo buscar por fecha;
+        //System.out.println("Total: " + ppData.precioTotalXFecha(LocalDate.of(2023, 10, 9))); //Posible metodo pero no puedo buscar por fecha;
         
-        /* LISTAR PEDIDOS MESEROS EN FECHA */
+        /* LISTAR PEDIDOS COBRADOS MESEROS EN FECHA */
         /*
         for (Pedido pedidosMeseros : ppData.listarPedidosXMeseroYFecha("Rojan", LocalDate.of(2023, 10, 8))) {
             System.out.println("ID: " + pedidosMeseros.getIdPedido());
@@ -94,9 +93,10 @@ public class testPedidoProductoData {
         */
         /* LISTAR PEDIDOS MESA ENTRE FECHA Y HORA */
         /*
-        for (Pedido pedidofh : ppData.listarPedidosXMesaEntreFechaYHora(1, LocalDateTime.of(2023, 10, 8, 10, 10, 00), LocalDateTime.of(2023, 10, 11, 10, 30, 00))) {
+        for (Pedido pedidofh : ppData.listarPedidosXMesaEntreFechaYHora(10, LocalDateTime.of(2023, 10, 8, 10, 10, 00), LocalDateTime.of(2023, 10, 10, 12, 30, 00))) {
             System.out.println("ID: " + pedidofh.getIdPedido());
             System.out.println("Mesa: " + pedidofh.getMesa().getIdMesa());
+            System.out.println("Numero: " + pedidofh.getMesa().getNumeroMesa());
             System.out.println("Mesero: " + pedidofh.getNombreMesero());
             System.out.println("Fecha y Hora: " + pedidofh.getFechaHoraPedido());
             System.out.println("");

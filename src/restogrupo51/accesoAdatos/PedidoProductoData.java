@@ -270,15 +270,15 @@ public class PedidoProductoData {
         return listaPedidosXMesero;
     }
     
-    public List<Pedido> listarPedidosXMesaEntreFechaYHora(int idM, LocalDateTime fecha1, LocalDateTime fecha2){
+    public List<Pedido> listarPedidosXMesaEntreFechaYHora(int numMesa, LocalDateTime fecha1, LocalDateTime fecha2){
         MesaData mesadata = new MesaData();
         
         ArrayList<Pedido> listaPedidosMesaXFH = new ArrayList<>(); 
-        String sql = "SELECT p.idPedido, p.idMesa, p.nombreMesero, p.fechaHoraPedido, p.importe, p.cobrada FROM pedido p INNER JOIN mesa m ON (p.idMesa = m.idMesa) WHERE m.idMesa = ? AND (p.fechaHoraPedido BETWEEN ? AND ?)";
+        String sql = "SELECT p.idPedido, p.idMesa, p.nombreMesero, p.fechaHoraPedido, p.importe, p.cobrada FROM pedido p INNER JOIN mesa m ON (p.idMesa = m.idMesa) WHERE m.numeroMesa = ? AND (p.fechaHoraPedido BETWEEN ? AND ?)";
         
         try{
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idM);
+            ps.setInt(1, numMesa);
             Timestamp fechaA = Timestamp.valueOf(fecha1);
             Timestamp fechaB = Timestamp.valueOf(fecha2);
             ps.setTimestamp(2, fechaA);
