@@ -10,16 +10,28 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import restogrupo51.accesoAdatos.MesaData;
+import restogrupo51.entidades.Mesa;
 
 
 
 public class Principal extends javax.swing.JFrame {
 
+   private javax.swing.JToggleButton[] TB = new javax.swing.JToggleButton[8];
+    
     MesaData mesaData = new MesaData();
     int mesaSelect = 0;
     
     public Principal() {
         initComponents();
+        TB[0] = TBmesa1;
+        TB[1] = TBmesa2;
+        TB[2] = TBmesa3;
+        TB[3] = TBmesa4;
+        TB[4] = TBmesa5;
+        TB[5] = TBmesa6;
+        TB[6] = TBmesa7;
+        TB[7] = TBmesa8;
+        ActualizarPantallaPrincipal();
     }
 
     /**
@@ -31,17 +43,7 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane(){
-
-            ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
-            Image image = icon.getImage();
-
-            public void paintComponent(Graphics g){
-                g.drawImage(image,0,0,getWidth(),getHeight(),this);
-            }
-
-        }
-        ;
+        escritorio = new javax.swing.JDesktopPane();
         jPanel1 = new javax.swing.JPanel();
         TBmesa1 = new javax.swing.JToggleButton();
         TBmesa3 = new javax.swing.JToggleButton();
@@ -64,9 +66,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa1.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa1.setText("Mesa 1");
         TBmesa1.setToolTipText("");
         TBmesa1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa1.setEnabled(false);
         TBmesa1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa1.addActionListener(new java.awt.event.ActionListener() {
@@ -77,9 +79,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa3.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa3.setText("Mesa 3");
         TBmesa3.setToolTipText("");
         TBmesa3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa3.setEnabled(false);
         TBmesa3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa3.addActionListener(new java.awt.event.ActionListener() {
@@ -90,9 +92,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa4.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa4.setText("Mesa 4");
         TBmesa4.setToolTipText("");
         TBmesa4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa4.setEnabled(false);
         TBmesa4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa4.addActionListener(new java.awt.event.ActionListener() {
@@ -103,9 +105,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa2.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa2.setText("Mesa 2");
         TBmesa2.setToolTipText("");
         TBmesa2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa2.setEnabled(false);
         TBmesa2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa2.addActionListener(new java.awt.event.ActionListener() {
@@ -116,9 +118,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa6.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa6.setText("Mesa 6");
         TBmesa6.setToolTipText("");
         TBmesa6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa6.setEnabled(false);
         TBmesa6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa6.addActionListener(new java.awt.event.ActionListener() {
@@ -129,9 +131,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa8.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa8.setText("Mesa 8");
         TBmesa8.setToolTipText("");
         TBmesa8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa8.setEnabled(false);
         TBmesa8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa8.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa8.addActionListener(new java.awt.event.ActionListener() {
@@ -142,9 +144,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa5.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa5.setText("Mesa 5");
         TBmesa5.setToolTipText("");
         TBmesa5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa5.setEnabled(false);
         TBmesa5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa5.addActionListener(new java.awt.event.ActionListener() {
@@ -155,9 +157,9 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa7.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa7.setText("Mesa 7");
         TBmesa7.setToolTipText("");
         TBmesa7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TBmesa7.setEnabled(false);
         TBmesa7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         TBmesa7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         TBmesa7.addActionListener(new java.awt.event.ActionListener() {
@@ -314,6 +316,7 @@ public class Principal extends javax.swing.JFrame {
     private void TBmesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa1ActionPerformed
         //TBmesa2.setEnabled(false);
         ActDescBotones(TBmesa1);
+        ActualizarPantallaPrincipal();
     }//GEN-LAST:event_TBmesa1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -408,37 +411,62 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    
 
+    
     public void ActDescBotones(javax.swing.JToggleButton TB){
 
         if (TB.isSelected()) {
-            TBmesa1.setEnabled(false);
-            TBmesa2.setEnabled(false);
-            TBmesa3.setEnabled(false);
-            TBmesa4.setEnabled(false);
-            TBmesa5.setEnabled(false);
-            TBmesa6.setEnabled(false);
-            TBmesa7.setEnabled(false);
-            TBmesa8.setEnabled(false);
+            TBmesa1.setSelected(false);
+            TBmesa1.setBackground(new Color(255,255,204));
+            TBmesa2.setSelected(false);
+            TBmesa2.setBackground(new Color(255,255,204));
+            TBmesa3.setSelected(false);
+            TBmesa3.setBackground(new Color(255,255,204));
+            TBmesa4.setSelected(false);
+            TBmesa4.setBackground(new Color(255,255,204));
+            TBmesa5.setSelected(false);
+            TBmesa5.setBackground(new Color(255,255,204));
+            TBmesa6.setSelected(false);
+            TBmesa6.setBackground(new Color(255,255,204));
+            TBmesa7.setSelected(false);
+            TBmesa7.setBackground(new Color(255,255,204));
+            TBmesa8.setSelected(false);
+            TBmesa8.setBackground(new Color(255,255,204));
             TB.setBackground(new Color(156, 255, 51)); //Verde Color de activado
-            TB.setEnabled(true);
+            TB.setSelected(true);
             mesaSelect = Integer.parseInt(TB.getText().split(" ")[1]);
             //System.out.println(mesaSelect);
             Bpedidos.setEnabled(true);
  
         } else if (!TB.isSelected()) {
-            TBmesa1.setEnabled(true);
-            TBmesa2.setEnabled(true);
-            TBmesa3.setEnabled(true);
-            TBmesa4.setEnabled(true);
-            TBmesa5.setEnabled(true);
-            TBmesa6.setEnabled(true);
-            TBmesa7.setEnabled(true);
-            TBmesa8.setEnabled(true);
+            //TBmesa1.setEnabled(true);
+            //TBmesa2.setEnabled(true);
+            //TBmesa3.setEnabled(true);
+            //TBmesa4.setEnabled(true);
+            //TBmesa5.setEnabled(true);
+            //TBmesa6.setEnabled(true);
+            //TBmesa7.setEnabled(true);
+            //TBmesa8.setEnabled(true);
             TB.setBackground(new Color(255,255,204));// color Normal
             mesaSelect=0;
             Bpedidos.setEnabled(false);
         }
     }
     
+    public void ActualizarPantallaPrincipal (){
+        int aux=0;
+            
+        for (javax.swing.JToggleButton botones : TB){
+            TB[aux].setText("");
+            TB[aux].setEnabled(false);
+            aux++;
+        }
+        aux=0;
+        for (Mesa mesa : mesaData.listaDeMesas()){
+            TB[aux].setText("Mesa " + mesa.getNumeroMesa());
+            TB[aux].setEnabled(true);
+            aux++;
+        }
+    }
 }
