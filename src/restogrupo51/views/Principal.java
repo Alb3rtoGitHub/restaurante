@@ -43,7 +43,16 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        escritorio = new javax.swing.JDesktopPane();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/fondo.jpg"));
+            Image image = icon.getImage();
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jPanel1 = new javax.swing.JPanel();
         TBmesa1 = new javax.swing.JToggleButton();
         TBmesa3 = new javax.swing.JToggleButton();
@@ -316,7 +325,6 @@ public class Principal extends javax.swing.JFrame {
     private void TBmesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa1ActionPerformed
         //TBmesa2.setEnabled(false);
         ActDescBotones(TBmesa1);
-        ActualizarPantallaPrincipal();
     }//GEN-LAST:event_TBmesa1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -357,6 +365,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void BpedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BpedidosActionPerformed
         System.out.println("La mesa seleccionada es la: " + mesaSelect);
+        ActualizarPantallaPrincipal();
     }//GEN-LAST:event_BpedidosActionPerformed
 
     /**
@@ -414,41 +423,25 @@ public class Principal extends javax.swing.JFrame {
     
 
     
-    public void ActDescBotones(javax.swing.JToggleButton TB){
+    public void ActDescBotones(javax.swing.JToggleButton TBSelect){
 
-        if (TB.isSelected()) {
-            TBmesa1.setSelected(false);
-            TBmesa1.setBackground(new Color(255,255,204));
-            TBmesa2.setSelected(false);
-            TBmesa2.setBackground(new Color(255,255,204));
-            TBmesa3.setSelected(false);
-            TBmesa3.setBackground(new Color(255,255,204));
-            TBmesa4.setSelected(false);
-            TBmesa4.setBackground(new Color(255,255,204));
-            TBmesa5.setSelected(false);
-            TBmesa5.setBackground(new Color(255,255,204));
-            TBmesa6.setSelected(false);
-            TBmesa6.setBackground(new Color(255,255,204));
-            TBmesa7.setSelected(false);
-            TBmesa7.setBackground(new Color(255,255,204));
-            TBmesa8.setSelected(false);
-            TBmesa8.setBackground(new Color(255,255,204));
-            TB.setBackground(new Color(156, 255, 51)); //Verde Color de activado
-            TB.setSelected(true);
-            mesaSelect = Integer.parseInt(TB.getText().split(" ")[1]);
+        if (TBSelect.isSelected()) {
+            int aux = 0;
+            for (javax.swing.JToggleButton botones : TB){
+            TB[aux].setSelected(false);
+            TB[aux].setBackground(new Color(255,255,204));
+            aux++;
+            }
+
+            TBSelect.setBackground(new Color(156, 255, 51)); //Verde Color de activado
+            TBSelect.setSelected(true);
+            mesaSelect = Integer.parseInt(TBSelect.getText().split(" ")[1]);
             //System.out.println(mesaSelect);
             Bpedidos.setEnabled(true);
  
-        } else if (!TB.isSelected()) {
-            //TBmesa1.setEnabled(true);
-            //TBmesa2.setEnabled(true);
-            //TBmesa3.setEnabled(true);
-            //TBmesa4.setEnabled(true);
-            //TBmesa5.setEnabled(true);
-            //TBmesa6.setEnabled(true);
-            //TBmesa7.setEnabled(true);
-            //TBmesa8.setEnabled(true);
-            TB.setBackground(new Color(255,255,204));// color Normal
+        } else if (!TBSelect.isSelected()) {
+            
+            TBSelect.setBackground(new Color(255,255,204));// color Normal
             mesaSelect=0;
             Bpedidos.setEnabled(false);
         }
