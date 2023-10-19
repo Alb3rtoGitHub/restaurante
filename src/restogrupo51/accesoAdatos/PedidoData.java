@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import restogrupo51.entidades.Mesa;
 import restogrupo51.entidades.Pedido;
 
 public class PedidoData {
@@ -24,21 +25,40 @@ public class PedidoData {
         
         try{
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            
-            ps.setInt(1, pedido.getMesa().getIdMesa());
+            int idMesa = pedido.getMesa().getIdMesa();
+            ps.setInt(1, idMesa);
             ps.setString(2, pedido.getNombreMesero());
             ps.setObject(3, pedido.getFechaHoraPedido());
-            ps.setDouble(4, pedido.getImporte());
+            ps.setDouble(4, pedido.getImporte()); //Revisar importe, va o no?
             ps.setBoolean(5, pedido.isCobrada()); //siempre false / no pago.
             
-            ps.executeUpdate();
-            
-            ResultSet res = ps.getGeneratedKeys();
-            if(res.next()){
-                pedido.setIdPedido(res.getInt(1));
-                JOptionPane.showMessageDialog(null, "Pedido Registrado");
+            if (mesaData.buscarMesaPorId(idMesa).isDisponibilidad() == true) {
+                int opcion = JOptionPane.showConfirmDialog(null, "¿Esta mesa esta libre, desea que pase a ocupada?", "Confirmar cambio de Disponibilidad", JOptionPane.YES_NO_OPTION);
+                if (opcion == JOptionPane.YES_OPTION) {
+                    Mesa mesita = mesaData.buscarMesaPorId(idMesa);
+                    mesita.setDisponibilidad(false);
+                    mesaData.modificarMesa(mesita);
+                    
+                    ps.executeUpdate();
+                    ResultSet res = ps.getGeneratedKeys();
+                    if (res.next()) {
+                        pedido.setIdPedido(res.getInt(1));
+                        JOptionPane.showMessageDialog(null, "Pedido Registrado");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "La mesa ha quedado en Disponibilidad Libre, asi que el pedido no se hara!");
+                }
+
+            } else {
+                ps.executeUpdate();
+                ResultSet res = ps.getGeneratedKeys();
+                if (res.next()) {
+                    pedido.setIdPedido(res.getInt(1));
+                    JOptionPane.showMessageDialog(null, "Pedido Registrado");
+                }
             }
             ps.close();
+            
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Pedido " + ex.getMessage());
         }

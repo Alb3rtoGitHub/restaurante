@@ -304,4 +304,36 @@ public class PedidoProductoData {
         
         return listaPedidosMesaXFH;
     }
+    
+    public List<PedidoProducto> obtenerPPXPedido(int idPed) {
+        ArrayList<PedidoProducto> pps = new ArrayList<>();
+
+        String sql = "SELECT idPedidoProducto, idPedido, idProducto, cantidad FROM pedidoproducto WHERE idPedido = ?";
+        pedidodata = new PedidoData();
+        productodata = new ProductoData();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idPed);
+
+            ResultSet res = ps.executeQuery();
+
+            while (res.next()) {
+                PedidoProducto pp = new PedidoProducto();
+                pp.setIdPedidoProducto(res.getInt("idPedidoProducto"));
+                pp.setPedido(pedidodata.buscarPedido(idPed));
+                pp.setProducto(productodata.buscarProducto(res.getInt("idProducto")));
+                pp.setCantidad(res.getInt("cantidad"));
+                pps.add(pp);
+            }
+            if (pps.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No existen Pedidos Con Producto para ese ID de Pedido");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la Tabla Pedido Producto " + ex.getMessage());
+        }
+
+        return pps;
+    }
+    
 }
