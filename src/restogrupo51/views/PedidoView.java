@@ -5,17 +5,55 @@
  */
 package restogrupo51.views;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import restogrupo51.accesoAdatos.MesaData;
+import restogrupo51.accesoAdatos.PedidoData;
+import restogrupo51.accesoAdatos.PedidoProductoData;
+import restogrupo51.accesoAdatos.ProductoData;
+import restogrupo51.entidades.Mesa;
+import restogrupo51.entidades.Pedido;
+import restogrupo51.entidades.PedidoProducto;
+import restogrupo51.entidades.Producto;
+
 /**
  *
  * @author Nico
  */
 public class PedidoView extends javax.swing.JInternalFrame {
 
+        private DefaultTableModel modelo = new DefaultTableModel() {
+
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+
+    private DefaultTableModel modelo2 = new DefaultTableModel() {
+
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
+    MesaData mesa = new MesaData();
+    PedidoData pedido = new PedidoData();
+    ProductoData producto = new ProductoData();
+    PedidoProductoData pp = new PedidoProductoData();
+    Mesa objetoMesa; //Deberia ser pasado por parametro por el constructor;
+    
     /**
      * Creates new form PedidoViews
      */
     public PedidoView() {
         initComponents();
+        armarCabecera();
+        armarCabecera2();
     }
 
     /**
@@ -25,21 +63,639 @@ public class PedidoView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaPedido = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaProducto = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        LabelID = new javax.swing.JLabel();
+        CampoID = new javax.swing.JTextField();
+        LabelMesa = new javax.swing.JLabel();
+        CampoNumeroMesa = new javax.swing.JTextField();
+        Limpiar = new javax.swing.JButton();
+        LabelMesero = new javax.swing.JLabel();
+        CampoMesero = new javax.swing.JTextField();
+        LabelFecha = new javax.swing.JLabel();
+        CampoFechaHora = new com.toedter.calendar.JDateChooser();
+        LabelCobrada = new javax.swing.JLabel();
+        NO = new javax.swing.JRadioButton();
+        SI = new javax.swing.JRadioButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        MenuProductos = new javax.swing.JList<>();
+        registrar = new javax.swing.JButton();
+        ListarProductos = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
+        LogoPedido = new javax.swing.JLabel();
+        LockLabel1 = new javax.swing.JLabel();
+        Lockid = new javax.swing.JTextField();
+        LockLabel2 = new javax.swing.JLabel();
+        Locknumero = new javax.swing.JTextField();
+        LockLabel3 = new javax.swing.JLabel();
+        LockLabel4 = new javax.swing.JLabel();
+        Lockcapacidad = new javax.swing.JTextField();
+        Lockdisponibilidad = new javax.swing.JTextField();
+        contador = new javax.swing.JTextField();
+        mas = new javax.swing.JButton();
+        menos = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        ModificarCantidad = new javax.swing.JButton();
+
+        TablaPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TablaPedido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaPedidoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(TablaPedido);
+
+        TablaProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        TablaProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaProductoMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(TablaProducto);
+
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel6.setText("REGISTRO PEDIDO");
+
+        LabelID.setText("ID");
+
+        LabelMesa.setText("Mesa");
+
+        Limpiar.setText("Limpiar");
+        Limpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LimpiarActionPerformed(evt);
+            }
+        });
+
+        LabelMesero.setText("Mesero");
+
+        LabelFecha.setText("Fecha");
+
+        CampoFechaHora.setDateFormatString("yyyy/MM/dd HH:mm:ss");
+
+        LabelCobrada.setText("Cobrada");
+
+        buttonGroup1.add(NO);
+        NO.setText("No");
+
+        buttonGroup1.add(SI);
+        SI.setText("Si");
+
+        jScrollPane3.setViewportView(MenuProductos);
+
+        registrar.setText("Registrar");
+        registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrarActionPerformed(evt);
+            }
+        });
+
+        ListarProductos.setText("Mostrar Lista");
+        ListarProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListarProductosActionPerformed(evt);
+            }
+        });
+
+        Modificar.setText("Modificar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(LabelID)
+                                    .addGap(65, 65, 65))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(LabelMesa)
+                                    .addGap(45, 45, 45)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(LabelMesero)
+                                    .addComponent(LabelFecha)
+                                    .addComponent(LabelCobrada))
+                                .addGap(28, 28, 28)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(CampoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(NO)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(SI)))
+                                .addContainerGap(34, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(Modificar))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(CampoID))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Limpiar)))
+                                .addGap(19, 19, 19))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(registrar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ListarProductos)
+                    .addComponent(jLabel6))
+                .addGap(108, 108, 108))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelID)
+                    .addComponent(CampoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Limpiar))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(LabelMesa)
+                    .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelMesero)
+                    .addComponent(CampoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(LabelFecha)
+                    .addComponent(CampoFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(LabelCobrada)
+                    .addComponent(NO)
+                    .addComponent(SI))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ListarProductos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrar)
+                    .addComponent(Modificar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        LogoPedido.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        LogoPedido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LogoPedido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidosIcon.png"))); // NOI18N
+        LogoPedido.setText("PEDIDOS");
+
+        LockLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        LockLabel1.setText("ID");
+
+        Lockid.setEditable(false);
+
+        LockLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        LockLabel2.setText("Numero");
+
+        Locknumero.setEditable(false);
+
+        LockLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        LockLabel3.setText("Capacidad");
+
+        LockLabel4.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        LockLabel4.setText("Disponibilidad");
+
+        Lockcapacidad.setEditable(false);
+
+        Lockdisponibilidad.setEditable(false);
+
+        mas.setText("+");
+        mas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masActionPerformed(evt);
+            }
+        });
+
+        menos.setText("-");
+        menos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menosActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Importe");
+
+        total.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        total.setText("0");
+
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel3.setText("$");
+
+        ModificarCantidad.setText("Modificar Cantidad");
+        ModificarCantidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarCantidadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(LogoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(LockLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(LockLabel1)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Lockid, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                            .addComponent(Lockcapacidad))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(LockLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(LockLabel2)
+                                .addGap(29, 29, 29)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Lockdisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Locknumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(184, 184, 184)
+                                .addComponent(jLabel1)
+                                .addGap(45, 45, 45)
+                                .addComponent(total)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel3))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(187, 187, 187)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ModificarCantidad)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(menos)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(mas)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 274, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(LogoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LockLabel1)
+                            .addComponent(Lockid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(LockLabel2)
+                            .addComponent(Locknumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LockLabel3)
+                            .addComponent(LockLabel4)
+                            .addComponent(Lockcapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Lockdisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mas)
+                    .addComponent(menos))
+                .addGap(10, 10, 10)
+                .addComponent(ModificarCantidad)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(total)
+                    .addComponent(jLabel3))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+        private void ListaDeMesa() {
+        try {
+            int id = objetoMesa.getIdMesa();
+            borrarFilas();
+            for (Pedido pedidoaux : pedido.listarPedidoPorMesa(id)) {
+                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumMesa(), pedidoaux.getNombreMesero(), pedidoaux.getfechaHoraPedido(), pedidoaux.getImporte(), pedidoaux.isCobrada()});
+                pp.calcularTotal(pedidoaux.getIdPedido());
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, " " + ex.getMessage());
+        }
+    }
+    */
+    
+    private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
+        /*
+        try {
+            int NumeroMesa = Integer.parseInt(CampoNumeroMesa.getText());
+            Mesa item = mesa.buscarMesaPorNumero(NumeroMesa);
+            String mese = CampoMesero.getText();
+            LocalDateTime fechaHora = CampoFechaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+            double imp = 0;
+            boolean estado = true;
+            if (buttonGroup1.isSelected(NO.getModel())) {
+                estado = false;
+            }
 
+            Pedido aux = new Pedido(item, mese, fechaHora, imp, estado);
+
+            if (Menu.isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(this, "Error al querer crear pedido, No hay seleccionado ningun producto!");
+            } else {
+                pedido.registrarPedido(aux);
+
+                borrarFilas();
+                List<Pedido> pedidosnuevos = pedido.listarPedidoPorMesa(objetoMesa.getIdMesa());
+                for (Pedido ListaPedidos : pedidosnuevos) {
+                    modelo.addRow(new Object[]{ListaPedidos.getIdPedido(), ListaPedidos.getMesa().getNumMesa(), ListaPedidos.getNombreMesero(), ListaPedidos.getfechaHoraPedido(), ListaPedidos.getImporte(), ListaPedidos.isCobrada()});
+                }
+                
+                for (Producto productos : MenuProductos.getSelectedValuesList()) {
+                    String cantSTR = JOptionPane.showInputDialog("Ingrese una cantidad para el producto: " + productos.getNombreProducto());
+                    int cant = Integer.parseInt(cantSTR);
+                    PedidoProducto PedidoProductoNuevo = new PedidoProducto(aux, productos, cant);
+                    pp.agregarPedidoProducto(PedidoProductoNuevo);
+                }
+            }
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, " " + ex.getMessage());
+        }
+        */
+    }//GEN-LAST:event_registrarActionPerformed
+
+    private void TablaPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPedidoMouseClicked
+        try {
+            if (TablaPedido.getSelectedRow() > -1) {
+                borrarFilas2();
+                int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
+                for (PedidoProducto pedprod : pp.obtenerPPXPedido(idped)) {
+                    double precio = pp.calcularSubtotal(pedprod.getIdPedidoProducto());
+                    modelo2.addRow(new Object[]{pedprod.getIdPedidoProducto(), pedprod.getProducto().getNombreProducto(), pedprod.getProducto().getPrecio(), pedprod.getCantidad(), precio});
+                }
+                mas.setEnabled(false);
+                menos.setEnabled(false);
+                double monto = pp.calcularTotal(idped);
+                total.setText(String.valueOf(monto));
+                String id = TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0).toString();
+                CampoID.setText(id);
+                String mesero = TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 2).toString();
+                CampoMesero.setText(mesero);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error " + ex.getMessage());
+        }
+    }//GEN-LAST:event_TablaPedidoMouseClicked
+
+    private void TablaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoMouseClicked
+        if (TablaProducto.getSelectedRow() > -1) {
+            String numero = TablaProducto.getValueAt(TablaProducto.getSelectedRow(), 3).toString();
+            contador.setText(numero);
+            mas.setEnabled(true);
+            menos.setEnabled(true);
+        }
+    }//GEN-LAST:event_TablaProductoMouseClicked
+
+    private void masActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masActionPerformed
+        int aumento = Integer.parseInt(contador.getText());
+        if (aumento < 9) {
+            aumento++;
+            contador.setText(String.valueOf(aumento));
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede agregar mas de 9 platos del mismo!");
+        }
+    }//GEN-LAST:event_masActionPerformed
+
+    private void menosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosActionPerformed
+        int restado = Integer.parseInt(contador.getText());
+        if (restado > 1) {
+            restado--;
+            contador.setText(String.valueOf(restado));
+        } else {
+            JOptionPane.showMessageDialog(this, "No se puede dejar con 0 platos del mismo!");
+        }
+    }//GEN-LAST:event_menosActionPerformed
+
+    private void ModificarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarCantidadActionPerformed
+        String idSTR = TablaProducto.getValueAt(TablaProducto.getSelectedRow(), 0).toString();
+        int id = Integer.parseInt(idSTR);
+        PedidoProducto pedpro = pp.buscarPedidoConProducto(id);
+        int cambio = Integer.parseInt(contador.getText());
+        pedpro.setCantidad(cambio);
+        pp.modificarPedidoConProducto(pedpro);
+
+        borrarFilas2();
+        int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
+        for (PedidoProducto pedprod : pp.obtenerPPXPedido(idped)) {
+            modelo2.addRow(new Object[]{pedprod.getIdPedidoProducto(), pedprod.getProducto().getNombreProducto(), pedprod.getProducto().getPrecio(), pedprod.getCantidad()});
+        }
+        mas.setEnabled(false);
+        menos.setEnabled(false);
+        double monto = pp.calcularTotal(idped);
+        total.setText(String.valueOf(monto));
+        //ListaDeMesa();
+    }//GEN-LAST:event_ModificarCantidadActionPerformed
+
+    private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
+        CampoID.setText("");
+        CampoMesero.setText("");
+        CampoFechaHora.setDate(null);
+        buttonGroup1.clearSelection();
+    }//GEN-LAST:event_LimpiarActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        int id = Integer.parseInt(CampoID.getText());
+        int mesaNumero = Integer.parseInt(CampoNumeroMesa.getText());
+        Mesa mes = mesa.buscarMesaPorNumero(mesaNumero);
+        String nombre = CampoMesero.getText();
+        LocalDateTime fechaHora = CampoFechaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        boolean estado = false;
+        if (buttonGroup1.isSelected(SI.getModel())) {
+            estado = true;
+        }
+
+        Pedido ped = new Pedido(id, mes, nombre, fechaHora, 0, estado);
+        pedido.modificarPedido(ped);
+    }//GEN-LAST:event_ModificarActionPerformed
+
+    private void ListarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProductosActionPerformed
+            List<Producto> lista = producto.listarProductos();
+            Producto[] arreglo = lista.toArray(new Producto[0]);
+            MenuProductos.setListData(arreglo);
+    }//GEN-LAST:event_ListarProductosActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser CampoFechaHora;
+    private javax.swing.JTextField CampoID;
+    private javax.swing.JTextField CampoMesero;
+    private javax.swing.JTextField CampoNumeroMesa;
+    private javax.swing.JLabel LabelCobrada;
+    private javax.swing.JLabel LabelFecha;
+    private javax.swing.JLabel LabelID;
+    private javax.swing.JLabel LabelMesa;
+    private javax.swing.JLabel LabelMesero;
+    private javax.swing.JButton Limpiar;
+    private javax.swing.JButton ListarProductos;
+    private javax.swing.JLabel LockLabel1;
+    private javax.swing.JLabel LockLabel2;
+    private javax.swing.JLabel LockLabel3;
+    private javax.swing.JLabel LockLabel4;
+    private javax.swing.JTextField Lockcapacidad;
+    private javax.swing.JTextField Lockdisponibilidad;
+    private javax.swing.JTextField Lockid;
+    private javax.swing.JTextField Locknumero;
+    private javax.swing.JLabel LogoPedido;
+    private javax.swing.JList<Producto> MenuProductos;
+    private javax.swing.JButton Modificar;
+    private javax.swing.JButton ModificarCantidad;
+    private javax.swing.JRadioButton NO;
+    private javax.swing.JRadioButton SI;
+    private javax.swing.JTable TablaPedido;
+    private javax.swing.JTable TablaProducto;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JTextField contador;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton mas;
+    private javax.swing.JButton menos;
+    private javax.swing.JButton registrar;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
+
+        private void armarCabecera() {
+        modelo.addColumn("#");
+        modelo.addColumn("Mesa");
+        modelo.addColumn("Mesero");
+        modelo.addColumn("Fecha Y Hora");
+        modelo.addColumn("Importe");
+        modelo.addColumn("Cobrado");
+        TablaPedido.setModel(modelo);
+    }
+
+    private void armarCabecera2() {
+        modelo2.addColumn("#");
+        modelo2.addColumn("Producto");
+        modelo2.addColumn("Precio Unit");
+        modelo2.addColumn("Cantidad");
+        modelo2.addColumn("Subtotal");
+        TablaProducto.setModel(modelo2);
+    }
+
+    private void borrarFilas() {
+        int f = TablaPedido.getRowCount() - 1; //me permite saber la cantidad de filas que tiene la tabla
+        for (; f >= 0; f--) { //f comienza en la cantidad de filas de mi tabla (lo tengo en la linea anterior)
+            modelo.removeRow(f);
+        }
+    }
+
+    private void borrarFilas2() {
+        int f = TablaProducto.getRowCount() - 1; //me permite saber la cantidad de filas que tiene la tabla
+        for (; f >= 0; f--) { //f comienza en la cantidad de filas de mi tabla (lo tengo en la linea anterior)
+            modelo2.removeRow(f);
+        }
+    }
+    /*
+    private void llenarCampos(Mesa mesa) {
+
+        String id2 = mesa.getIdMesa() + "";
+        Mid.setText(id2);
+        String numero = mesa.getNumMesa() + "";
+        Mnumero.setText(numero);
+        String cap = mesa.getCapacidad() + "";
+        Mcap.setText(cap);
+        if (mesa.isDisponibilidad() == true) {
+            Mdisp.setText("Libre");
+        } else {
+            Mdisp.setText("Ocupada");
+        }
+    }
+    */
 }
