@@ -63,7 +63,7 @@ public class Principal extends javax.swing.JFrame {
         TBmesa5 = new javax.swing.JToggleButton();
         TBmesa7 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbtnMesas = new javax.swing.JButton();
         Bpedidos = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -225,13 +225,13 @@ public class Principal extends javax.swing.JFrame {
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon2.png"))); // NOI18N
-        jButton2.setText("Mesas");
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon2.png"))); // NOI18N
+        jbtnMesas.setText("Mesas");
+        jbtnMesas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnMesas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnMesas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnMesasActionPerformed(evt);
             }
         });
 
@@ -261,7 +261,7 @@ public class Principal extends javax.swing.JFrame {
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jbtnMesas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(Bpedidos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -278,7 +278,7 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))
@@ -295,7 +295,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(67, 67, 67)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
@@ -327,9 +327,13 @@ public class Principal extends javax.swing.JFrame {
         ActDescBotones(TBmesa1);
     }//GEN-LAST:event_TBmesa1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jbtnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMesasActionPerformed
+        escritorio.repaint();
+        MesasView MsV = new MesasView();
+        MsV.setVisible(true);
+        escritorio.add(MsV);
+        escritorio.moveToFront(MsV);
+    }//GEN-LAST:event_jbtnMesasActionPerformed
 
     private void TBmesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa3ActionPerformed
         ActDescBotones(TBmesa3);
@@ -415,10 +419,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JToggleButton TBmesa8;
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtnMesas;
     // End of variables declaration//GEN-END:variables
     
 
@@ -456,7 +460,7 @@ public class Principal extends javax.swing.JFrame {
             aux++;
         }
         aux=0;
-        for (Mesa mesa : mesaData.listaDeMesas()){
+        for (Mesa mesa : mesaData.listarMesas()){
             TB[aux].setText("Mesa " + mesa.getNumeroMesa());
             TB[aux].setEnabled(true);
             aux++;
