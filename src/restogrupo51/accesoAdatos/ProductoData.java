@@ -71,7 +71,7 @@ public class ProductoData {
                 if (exito == 1) {
                     JOptionPane.showMessageDialog(null, "El producto se elimino");
                 } else if(exito == 0){
-                    JOptionPane.showMessageDialog(null, "Error al eliminar el producto.");
+                    JOptionPane.showMessageDialog(null, "No se pudo eliminar el producto. El mismo se encuentra en uno o mas pedidos");
                 }
                 ps.close();
             } catch (SQLException ex) {
@@ -81,7 +81,7 @@ public class ProductoData {
     }
     
     public Producto buscarProducto(int idProducto){
-        String sql = "SELECT codigoProducto, nombreProducto, precio, stock, estadoProducto FROM producto WHERE idProducto = ? AND estadoProducto = 1";
+        String sql = "SELECT codigoProducto, nombreProducto, precio, stock, estadoProducto FROM producto WHERE idProducto = ?";// AND estadoProducto = 1";
         Producto producto = null;
         try{
             PreparedStatement ps = con.prepareStatement(sql);
@@ -110,7 +110,7 @@ public class ProductoData {
     }
     
     public Producto buscarProductoPorCodigo(String codigoProducto){
-        String sql = "SELECT idProducto, nombreProducto, precio, stock, estadoProducto FROM producto WHERE codigoProducto = ? AND estadoProducto = 1";
+        String sql = "SELECT idProducto, nombreProducto, precio, stock, estadoProducto FROM producto WHERE codigoProducto = ?";//  AND estadoProducto = 1";
         Producto producto = null;
         
         try{
@@ -141,7 +141,7 @@ public class ProductoData {
     }
     
     public List<Producto> listarProductos(){
-        String sql = "SELECT * FROM producto WHERE estadoProducto = 1";
+        String sql = "SELECT * FROM producto";// WHERE estadoProducto = 1";
         ArrayList<Producto> productos = new ArrayList<>();
         
         try{
@@ -166,5 +166,4 @@ public class ProductoData {
         
         return productos;
     }
-    
 }

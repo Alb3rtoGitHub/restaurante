@@ -62,7 +62,7 @@ public class Principal extends javax.swing.JFrame {
         TBmesa8 = new javax.swing.JToggleButton();
         TBmesa5 = new javax.swing.JToggleButton();
         TBmesa7 = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        jbtnProductos = new javax.swing.JButton();
         jbtnMesas = new javax.swing.JButton();
         Bpedidos = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -220,10 +220,15 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
-        jButton1.setText("Productos");
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
+        jbtnProductos.setText("Productos");
+        jbtnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnProductos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnProductosActionPerformed(evt);
+            }
+        });
 
         jbtnMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon2.png"))); // NOI18N
         jbtnMesas.setText("Mesas");
@@ -260,7 +265,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel1.setText("Resto Grupo51");
 
         escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jbtnProductos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jbtnMesas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(Bpedidos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -280,7 +285,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jbtnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(48, 48, 48))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addComponent(Bpedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -294,7 +299,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbtnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(escritorioLayout.createSequentialGroup()
@@ -372,6 +377,14 @@ public class Principal extends javax.swing.JFrame {
         ActualizarPantallaPrincipal();
     }//GEN-LAST:event_BpedidosActionPerformed
 
+    private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
+        escritorio.repaint();
+        ProductosView PrV = new ProductosView();
+        PrV.setVisible(true);
+        escritorio.add(PrV);
+        escritorio.moveToFront(PrV);
+    }//GEN-LAST:event_jbtnProductosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,11 +431,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JToggleButton TBmesa7;
     private javax.swing.JToggleButton TBmesa8;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtnMesas;
+    private javax.swing.JButton jbtnProductos;
     // End of variables declaration//GEN-END:variables
     
 
