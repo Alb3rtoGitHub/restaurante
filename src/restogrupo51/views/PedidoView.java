@@ -5,8 +5,10 @@
  */
 package restogrupo51.views;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,7 +27,7 @@ import restogrupo51.entidades.Producto;
  */
 public class PedidoView extends javax.swing.JInternalFrame {
 
-        private DefaultTableModel modelo = new DefaultTableModel() {
+    private DefaultTableModel modelo = new DefaultTableModel() {
 
         @Override
         public boolean isCellEditable(int f, int c) {
@@ -40,13 +42,13 @@ public class PedidoView extends javax.swing.JInternalFrame {
             return false;
         }
     };
-    
+
     MesaData mesa = new MesaData();
     PedidoData pedido = new PedidoData();
     ProductoData producto = new ProductoData();
     PedidoProductoData pp = new PedidoProductoData();
     Mesa objetoMesa; //Deberia ser pasado por parametro por el constructor;
-    
+
     /**
      * Creates new form PedidoViews
      */
@@ -57,6 +59,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         objetoMesa = mesa;
         llenarCampos(objetoMesa);
         ListaDeMesa();
+        cargarLista();
         mas.setEnabled(false);
         menos.setEnabled(false);
         TablaPedido.getColumnModel().getColumn(0).setPreferredWidth(15);
@@ -65,7 +68,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         TablaPedido.getColumnModel().getColumn(3).setPreferredWidth(130);
         TablaPedido.getColumnModel().getColumn(4).setPreferredWidth(70);
         TablaPedido.getColumnModel().getColumn(5).setPreferredWidth(50);
-        
+
     }
 
     /**
@@ -97,7 +100,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         MenuProductos = new javax.swing.JList<>();
         registrar = new javax.swing.JButton();
-        ListarProductos = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
         LogoPedido = new javax.swing.JLabel();
         LockLabel1 = new javax.swing.JLabel();
@@ -196,13 +198,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
-        ListarProductos.setText("Mostrar Lista");
-        ListarProductos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ListarProductosActionPerformed(evt);
-            }
-        });
-
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,10 +252,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ListarProductos)
-                    .addComponent(jLabel6))
-                .addGap(108, 108, 108))
+                .addComponent(jLabel6)
+                .addGap(110, 110, 110))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,10 +282,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
                     .addComponent(LabelCobrada)
                     .addComponent(NO)
                     .addComponent(SI))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(ListarProductos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrar)
@@ -463,59 +454,63 @@ public class PedidoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-        private void ListaDeMesa() {
+    private void ListaDeMesa() {
         try {
             int id = objetoMesa.getIdMesa();
+            String estado = "";
             borrarFilas();
             for (Pedido pedidoaux : pedido.listarPedidoPorMesa(id)) {
-                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), pedidoaux.isCobrada()});
+                if (pedidoaux.isCobrada()) {
+                    estado = "SI";
+                } else {
+                    estado = "NO";
+                }
+                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), estado});
                 pp.calcularTotal(pedidoaux.getIdPedido());
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, " " + ex.getMessage());
         }
     }
-    
-    
+
+
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        
+
         try {
             int NumeroMesa = Integer.parseInt(CampoNumeroMesa.getText());
             Mesa item = mesa.buscarMesaPorNumero(NumeroMesa);
             String mese = CampoMesero.getText();
             LocalDateTime fechaHora = CampoFechaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             double imp = 0;
-            boolean estado = true;
-            if (buttonGroup1.isSelected(NO.getModel())) {
-                estado = false;
+            boolean estado = false;
+            if (buttonGroup1.isSelected(SI.getModel())) {
+                estado = true;
             }
 
-            Pedido aux = new Pedido(item, mese, fechaHora, imp, estado);
+            if (item != null) {
+                Pedido aux = new Pedido(item, mese, fechaHora, imp, estado);
 
-            if (MenuProductos.isSelectionEmpty()) {
-                JOptionPane.showMessageDialog(this, "Error al querer crear pedido, No hay seleccionado ningun producto!");
-            } else {
-                pedido.registrarPedido(aux);
+                if (MenuProductos.isSelectionEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Error al querer crear pedido, No hay seleccionado ningun producto!");
+                } else {
+                    pedido.registrarPedido(aux);
 
-                borrarFilas();
-                List<Pedido> pedidosnuevos = pedido.listarPedidoPorMesa(objetoMesa.getIdMesa());
-                for (Pedido ListaPedidos : pedidosnuevos) {
-                    modelo.addRow(new Object[]{ListaPedidos.getIdPedido(), ListaPedidos.getMesa().getNumeroMesa(), ListaPedidos.getNombreMesero(), ListaPedidos.getFechaHoraPedido(), ListaPedidos.getImporte(), ListaPedidos.isCobrada()});
+                    for (Producto productos : MenuProductos.getSelectedValuesList()) {
+                        String cantSTR = JOptionPane.showInputDialog("Ingrese una cantidad para el producto: " + productos.getNombreProducto());
+                        int cant = Integer.parseInt(cantSTR);
+                        PedidoProducto PedidoProductoNuevo = new PedidoProducto(aux, productos, cant);
+                        pp.agregarPedidoProducto(PedidoProductoNuevo);
+                    }
+                    pp.calcularTotal(aux.getIdPedido());
+                    ListaDeMesa();
                 }
-                
-                for (Producto productos : MenuProductos.getSelectedValuesList()) {
-                    String cantSTR = JOptionPane.showInputDialog("Ingrese una cantidad para el producto: " + productos.getNombreProducto());
-                    int cant = Integer.parseInt(cantSTR);
-                    PedidoProducto PedidoProductoNuevo = new PedidoProducto(aux, productos, cant);
-                    pp.agregarPedidoProducto(PedidoProductoNuevo);
-                }
+
             }
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, " " + ex.getMessage());
+        } catch (NullPointerException A) {
+            JOptionPane.showMessageDialog(this, "Falta completar campos");
         }
-        
+
     }//GEN-LAST:event_registrarActionPerformed
 
     private void TablaPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPedidoMouseClicked
@@ -531,10 +526,19 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 menos.setEnabled(false);
                 double monto = pp.calcularTotal(idped);
                 total.setText(String.valueOf(monto));
-                String id = TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0).toString();
+                
+                Pedido nuevo = pedido.buscarPedido(idped);
+                
+                String id = nuevo.getIdPedido() + "";
                 CampoID.setText(id);
-                String mesero = TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 2).toString();
+                String mesero = nuevo.getNombreMesero();
                 CampoMesero.setText(mesero);
+                if (nuevo.isCobrada()) {
+                    SI.setSelected(true);
+                } else {
+                    NO.setSelected(true);
+                }
+                
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error " + ex.getMessage());
@@ -581,13 +585,15 @@ public class PedidoView extends javax.swing.JInternalFrame {
         borrarFilas2();
         int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
         for (PedidoProducto pedprod : pp.obtenerPPXPedido(idped)) {
-            modelo2.addRow(new Object[]{pedprod.getIdPedidoProducto(), pedprod.getProducto().getNombreProducto(), pedprod.getProducto().getPrecio(), pedprod.getCantidad()});
+            double precio = pp.calcularSubtotal(pedprod.getIdPedidoProducto());
+            modelo2.addRow(new Object[]{pedprod.getIdPedidoProducto(), pedprod.getProducto().getNombreProducto(), pedprod.getProducto().getPrecio(), pedprod.getCantidad(), precio});
         }
         mas.setEnabled(false);
         menos.setEnabled(false);
         double monto = pp.calcularTotal(idped);
         total.setText(String.valueOf(monto));
-        //ListaDeMesa();
+        ListaDeMesa();
+        borrarFilas2();
     }//GEN-LAST:event_ModificarCantidadActionPerformed
 
     private void LimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LimpiarActionPerformed
@@ -610,14 +616,21 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         Pedido ped = new Pedido(id, mes, nombre, fechaHora, 0, estado);
         pedido.modificarPedido(ped);
+        if (!MenuProductos.isSelectionEmpty()) {
+            for (Producto productos : MenuProductos.getSelectedValuesList()) {
+
+                String cantSTR = JOptionPane.showInputDialog("Ingrese una cantidad para el producto: " + productos.getNombreProducto());
+                int cant = Integer.parseInt(cantSTR);
+                PedidoProducto PedidoProductoNuevo = new PedidoProducto(ped, productos, cant);
+                pp.agregarPedidoProducto(PedidoProductoNuevo);
+                borrarFilas2();
+            }
+        }
+
+        pp.calcularTotal(ped.getIdPedido());
+        ListaDeMesa();
     }//GEN-LAST:event_ModificarActionPerformed
 
-    private void ListarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListarProductosActionPerformed
-            List<Producto> lista = producto.listarProductos();
-            Producto[] arreglo = lista.toArray(new Producto[0]);
-            MenuProductos.setListData(arreglo);
-    }//GEN-LAST:event_ListarProductosActionPerformed
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser CampoFechaHora;
     private javax.swing.JTextField CampoID;
@@ -629,7 +642,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel LabelMesa;
     private javax.swing.JLabel LabelMesero;
     private javax.swing.JButton Limpiar;
-    private javax.swing.JButton ListarProductos;
     private javax.swing.JLabel LockLabel1;
     private javax.swing.JLabel LockLabel2;
     private javax.swing.JLabel LockLabel3;
@@ -661,7 +673,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 
-        private void armarCabecera() {
+    private void armarCabecera() {
         modelo.addColumn("#");
         modelo.addColumn("Mesa");
         modelo.addColumn("Mesero");
@@ -693,7 +705,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             modelo2.removeRow(f);
         }
     }
-    
+
     private void llenarCampos(Mesa mesa) {
 
         String id2 = mesa.getIdMesa() + "";
@@ -707,7 +719,15 @@ public class PedidoView extends javax.swing.JInternalFrame {
         } else {
             Lockdisponibilidad.setText("Ocupada");
         }
-        CampoNumeroMesa.setText(mesa.getIdMesa() + "");
+        CampoNumeroMesa.setText(mesa.getNumeroMesa() + "");
+        NO.setSelected(true);
+        CampoFechaHora.setDate(Date.from(Instant.now()));
+    }
+
+    private void cargarLista() {
+        List<Producto> lista = producto.listarProductos();
+        Producto[] arreglo = lista.toArray(new Producto[0]);
+        MenuProductos.setListData(arreglo);
     }
     
 }
