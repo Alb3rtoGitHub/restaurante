@@ -79,6 +79,25 @@ public class ProductoData {
             }
         }
     }
+    public void restaurarProducto(int idProducto){
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea Restaurar el producto?", "Confirmar Restaurar producto", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            String sql = "UPDATE producto SET estadoProducto = 1 WHERE idProducto = ?";
+            try{
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idProducto);
+                int exito = ps.executeUpdate();
+                if (exito == 1) {
+                    JOptionPane.showMessageDialog(null, "El producto se restauro.");
+                } else if(exito == 0){
+                    JOptionPane.showMessageDialog(null, "No se pudo restaurar el producto.");
+                }
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a tabla producto " + ex.getMessage());
+            }
+        }
+    }
     
     public Producto buscarProducto(int idProducto){
         String sql = "SELECT codigoProducto, nombreProducto, precio, stock, estadoProducto FROM producto WHERE idProducto = ?";// AND estadoProducto = 1";

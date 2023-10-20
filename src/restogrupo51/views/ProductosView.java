@@ -26,7 +26,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarTabla();
         getContentPane().setBackground(new Color(255,205,110));
-        jradbtnActivo.setSelected(true);
         
         // Cambiar el color de fondo de las cabeceras de columna
         JTableHeader header = jtblProductos.getTableHeader();
@@ -40,7 +39,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoBotonesActivo = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtblProductos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -51,7 +49,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jtxtId = new javax.swing.JTextField();
         jtxtCodigo = new javax.swing.JTextField();
         jtxtNombre = new javax.swing.JTextField();
@@ -63,8 +60,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jbtnBuscarId = new javax.swing.JButton();
         jbtnLimpiar = new javax.swing.JButton();
         jbtnModificar = new javax.swing.JButton();
-        jradbtnActivo = new javax.swing.JRadioButton();
-        jradbtnNoActivo = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         jtxtBuscarCodigo = new javax.swing.JTextField();
         jbtnBuscarPorCodigo = new javax.swing.JButton();
@@ -110,8 +105,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jLabel6.setText("Precio");
 
         jLabel7.setText("Stock");
-
-        jLabel8.setText("Estado");
 
         jtxtId.setEditable(false);
         jtxtId.addCaretListener(new javax.swing.event.CaretListener() {
@@ -162,12 +155,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        grupoBotonesActivo.add(jradbtnActivo);
-        jradbtnActivo.setText("Activo");
-
-        grupoBotonesActivo.add(jradbtnNoActivo);
-        jradbtnNoActivo.setText("No Activo");
-
         jLabel10.setText("Buscar por Código");
 
         jtxtBuscarCodigo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,20 +177,13 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnGuardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbtnModificar)
-                        .addGap(22, 22, 22)
-                        .addComponent(jbtnLimpiar)
-                        .addGap(13, 13, 13))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jradbtnActivo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jradbtnNoActivo)
-                        .addGap(32, 32, 32))))
+                .addComponent(jbtnModificar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtnLimpiar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,10 +197,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel7)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel8))
-                                .addGap(69, 69, 69)
+                                .addComponent(jLabel3)
+                                .addGap(97, 97, 97)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jtxtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                     .addComponent(jtxtPrecio)
@@ -278,22 +256,12 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jtxtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
-                        .addGap(16, 16, 16)
+                        .addGap(63, 63, 63)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jradbtnActivo)
-                            .addComponent(jradbtnNoActivo))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jbtnGuardar)
-                                    .addComponent(jbtnLimpiar))
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtnModificar)
-                                .addGap(5, 5, 5))))
+                            .addComponent(jbtnGuardar)
+                            .addComponent(jbtnModificar)
+                            .addComponent(jbtnLimpiar))
+                        .addGap(21, 21, 21))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbtnBuscarId)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -301,6 +269,9 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jbtnEliminar.setBackground(new java.awt.Color(255, 205, 110));
         jbtnEliminar.setText("Eliminar");
+        jbtnEliminar.setName(""); // NOI18N
+        jbtnEliminar.setOpaque(false);
+        jbtnEliminar.setPreferredSize(new java.awt.Dimension(85, 26));
         jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnEliminarActionPerformed(evt);
@@ -320,7 +291,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(182, 182, 182)
-                                .addComponent(jbtnEliminar)))
+                                .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(184, 184, 184))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -341,7 +312,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
-                        .addComponent(jbtnEliminar)
+                        .addComponent(jbtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(60, 60, 60))))
         );
 
@@ -361,11 +332,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 jtxtNombre.setText(producto.getNombreProducto());
                 jtxtPrecio.setText(String.valueOf(producto.getPrecio()));
                 jtxtStock.setText(String.valueOf(producto.getStock()));
-                if (producto.isEstadoProducto() == true) {
-                    grupoBotonesActivo.setSelected(jradbtnActivo.getModel(), true);
-                } else {
-                    grupoBotonesActivo.setSelected(jradbtnNoActivo.getModel(), true);
-                }
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Debe ingresar un número entero");
@@ -381,9 +347,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
             int stock = Integer.parseInt(jtxtStock.getText());
             
             boolean estado = true;
-            if (grupoBotonesActivo.isSelected(jradbtnNoActivo.getModel())) {
-                estado = false;
-            }
 
             Producto producto = new Producto(codigo, nombre, precio, stock, estado);
             ProductoData productoData = new ProductoData();
@@ -407,13 +370,19 @@ public class ProductosView extends javax.swing.JInternalFrame {
         if (jtblProductos.getSelectedRow() > -1) {
             String idString = jtblProductos.getValueAt(jtblProductos.getSelectedRow(), 0).toString();
             int idProducto = Integer.parseInt(idString);
-            
-            productoData.eliminarProducto(idProducto);
+            Producto prodBuscar = productoData.buscarProducto(idProducto);
+            if (prodBuscar.isEstadoProducto())
+                productoData.eliminarProducto(prodBuscar.getIdProducto());
+            else
+                productoData.restaurarProducto(prodBuscar.getIdProducto());
         } else {
             try{
                 Producto productoBuscado = productoData.buscarProducto(Integer.parseInt(jtxtId.getText()));
                 if (productoBuscado != null) {
-                    productoData.eliminarProducto(productoBuscado.getIdProducto());
+                    if (productoBuscado.isEstadoProducto())
+                        productoData.eliminarProducto(productoBuscado.getIdProducto());
+                    else
+                        productoData.restaurarProducto(productoBuscado.getIdProducto());
                 }
             }catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(this, "Debe ingresar un numero entero en Buscar");
@@ -432,20 +401,13 @@ public class ProductosView extends javax.swing.JInternalFrame {
             String nombre = jtxtNombre.getText();
             double precio = Double.parseDouble(jtxtPrecio.getText());
             int stock = Integer.parseInt(jtxtStock.getText());
-            
-            boolean estado = true;
-            if (grupoBotonesActivo.isSelected(jradbtnActivo.getModel())) {
-                estado = true;
-            } else if (grupoBotonesActivo.isSelected(jradbtnNoActivo.getModel())){
-                estado = false;
-            }
-            
+
             ProductoData productoData = new ProductoData();
             Producto producto = productoData.buscarProducto(idProducto);
             
             if (producto != null) {
                 idProducto = producto.getIdProducto();
-                producto = new Producto(idProducto, codigo, nombre, precio, stock, estado);
+                producto = new Producto(idProducto, codigo, nombre, precio, stock, producto.isEstadoProducto());
                 productoData.modificarProducto(producto);
             }
             borrarFilas();
@@ -485,9 +447,9 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 jtxtStock.setText(Integer.toString(producto.getStock()));
                 
                 if(producto.isEstadoProducto() == true){
-                    grupoBotonesActivo.setSelected(jradbtnActivo.getModel(), true);
+                    jbtnEliminar.setText("Eliminar");
                 }else{
-                    grupoBotonesActivo.setSelected(jradbtnNoActivo.getModel(), true);
+                    jbtnEliminar.setText("Restaurar");
                 }
             }
         }
@@ -511,12 +473,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 jtxtNombre.setText(String.valueOf(producto.getNombreProducto()));
                 jtxtPrecio.setText(String.valueOf(producto.getPrecio()));
                 jtxtStock.setText(String.valueOf(producto.getStock()));
-                
-                if(producto.isEstadoProducto()== true){
-                    grupoBotonesActivo.setSelected(jradbtnActivo.getModel(), true);
-                }else{
-                    grupoBotonesActivo.setSelected(jradbtnNoActivo.getModel(), true);
-                }
+
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Debe ingresar un Código");
@@ -538,7 +495,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup grupoBotonesActivo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -547,7 +503,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -557,8 +512,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbtnGuardar;
     private javax.swing.JButton jbtnLimpiar;
     private javax.swing.JButton jbtnModificar;
-    private javax.swing.JRadioButton jradbtnActivo;
-    private javax.swing.JRadioButton jradbtnNoActivo;
     private javax.swing.JTable jtblProductos;
     private javax.swing.JTextField jtxtBuscarCodigo;
     private javax.swing.JTextField jtxtBuscarId;
@@ -593,7 +546,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             if (producto.isEstadoProducto()) {
                 act = "Activo";
             } else {
-                act = "No Activo";
+                act = "Eliminado";
             }
             modelo.addRow(new Object[]{producto.getIdProducto(), producto.getCodigoProducto(), producto.getNombreProducto(), producto.getPrecio(), producto.getStock(), act});
         }
@@ -620,7 +573,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jtxtNombre.setText("");
         jtxtPrecio.setText("");
         jtxtStock.setText("");
-        jradbtnActivo.setSelected(true);
     }
 }
 
