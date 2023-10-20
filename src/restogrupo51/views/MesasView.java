@@ -13,6 +13,8 @@ import restogrupo51.entidades.Mesa;
 
 public class MesasView extends javax.swing.JInternalFrame {
     MesaData mesa = new MesaData();
+    Principal principal;
+    
     private DefaultTableModel modelo = new DefaultTableModel() {
         
         @Override
@@ -21,7 +23,8 @@ public class MesasView extends javax.swing.JInternalFrame {
         }
     };
    
-    public MesasView() {
+    public MesasView(Principal principal) {
+        this.principal = principal;
         initComponents();
         armarCabecera();
         cargarTabla();
@@ -365,6 +368,7 @@ public class MesasView extends javax.swing.JInternalFrame {
         borrarFilas();
         cargarTabla();
         borrarDatos();
+        principal.ActualizarPantallaPrincipal();
     }//GEN-LAST:event_jbtnEliminarActionPerformed
 
     private void jbtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnGuardarActionPerformed
@@ -392,6 +396,9 @@ public class MesasView extends javax.swing.JInternalFrame {
             borrarFilas();
             cargarTabla();
             borrarDatos();
+            
+            principal.ActualizarPantallaPrincipal();
+            
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Debe ingresar un número entero");
             jtxtCapacidad.setText("");
@@ -464,6 +471,9 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
             borrarFilas();
             cargarTabla();
+            
+            principal.ActualizarPantallaPrincipal();
+            
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Debe ingresar un numero entero");
             jtxtCapacidad.setText("");

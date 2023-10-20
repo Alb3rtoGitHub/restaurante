@@ -75,7 +75,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa1.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa1.setToolTipText("");
         TBmesa1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa1.setEnabled(false);
         TBmesa1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -88,7 +87,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa3.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa3.setToolTipText("");
         TBmesa3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa3.setEnabled(false);
         TBmesa3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -101,7 +99,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa4.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa4.setToolTipText("");
         TBmesa4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa4.setEnabled(false);
         TBmesa4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -114,7 +111,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa2.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa2.setToolTipText("");
         TBmesa2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa2.setEnabled(false);
         TBmesa2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -127,7 +123,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa6.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa6.setToolTipText("");
         TBmesa6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa6.setEnabled(false);
         TBmesa6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -140,7 +135,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa8.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa8.setToolTipText("");
         TBmesa8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa8.setEnabled(false);
         TBmesa8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -153,7 +147,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa5.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa5.setToolTipText("");
         TBmesa5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa5.setEnabled(false);
         TBmesa5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -166,7 +159,6 @@ public class Principal extends javax.swing.JFrame {
 
         TBmesa7.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
-        TBmesa7.setToolTipText("");
         TBmesa7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TBmesa7.setEnabled(false);
         TBmesa7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -289,7 +281,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(48, 48, 48))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addComponent(Bpedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         escritorioLayout.setVerticalGroup(
@@ -305,7 +297,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
@@ -334,7 +326,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void jbtnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMesasActionPerformed
         escritorio.repaint();
-        MesasView MsV = new MesasView();
+        MesasView MsV = new MesasView(this);
         MsV.setVisible(true);
         escritorio.add(MsV);
         escritorio.moveToFront(MsV);
@@ -373,8 +365,15 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void BpedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BpedidosActionPerformed
-        System.out.println("La mesa seleccionada es la: " + mesaSelect);
-        ActualizarPantallaPrincipal();
+        //System.out.println("La mesa seleccionada es la: " + mesaSelect);
+        //ActualizarPantallaPrincipal();
+        
+        //escritorio.removeAll();
+        escritorio.repaint();
+        PedidoView PV = new PedidoView(mesaData.buscarMesaPorNumero(mesaSelect));          
+        PV.setVisible(true);
+        escritorio.add(PV);
+        escritorio.moveToFront(PV);
     }//GEN-LAST:event_BpedidosActionPerformed
 
     private void jbtnProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnProductosActionPerformed
@@ -444,21 +443,34 @@ public class Principal extends javax.swing.JFrame {
 
         if (TBSelect.isSelected()) {
             int aux = 0;
+            
             for (javax.swing.JToggleButton botones : TB){
-            TB[aux].setSelected(false);
-            TB[aux].setBackground(new Color(255,255,204));
-            aux++;
+                TB[aux].setSelected(false);
+                if (TB[aux].isEnabled()){
+                    if (mesaData.buscarMesaPorNumero(Integer.parseInt(TB[aux].getText().split(" ")[1])).isDisponibilidad())
+                        TB[aux].setBackground(new Color(156, 255, 51));// Verde Libre
+                    else
+                        TB[aux].setBackground(new Color(255,51,0));//Rojo Ocupada
+                }
+
+                //TB[aux].setBackground(new Color(255,255,204));//color normal
+                aux++;
             }
 
-            TBSelect.setBackground(new Color(156, 255, 51)); //Verde Color de activado
+            //TBSelect.setBackground(new Color(156, 255, 51)); //Verde Color de activado
+            TBSelect.setBackground(new Color(255,255,51));//Amarillo Color de activado
+            //[255,51,0]
             TBSelect.setSelected(true);
             mesaSelect = Integer.parseInt(TBSelect.getText().split(" ")[1]);
             //System.out.println(mesaSelect);
             Bpedidos.setEnabled(true);
  
         } else if (!TBSelect.isSelected()) {
-            
-            TBSelect.setBackground(new Color(255,255,204));// color Normal
+            if (mesaData.buscarMesaPorNumero(Integer.parseInt(TBSelect.getText().split(" ")[1])).isDisponibilidad())
+                        TBSelect.setBackground(new Color(156, 255, 51));// Verde Libre
+                    else
+                        TBSelect.setBackground(new Color(255,51,0));//Rojo Ocupada
+            //TBSelect.setBackground(new Color(255,255,204));// color Normal
             mesaSelect=0;
             Bpedidos.setEnabled(false);
         }
@@ -474,9 +486,16 @@ public class Principal extends javax.swing.JFrame {
         }
         aux=0;
         for (Mesa mesa : mesaData.listarMesas()){
-            TB[aux].setText("Mesa " + mesa.getNumeroMesa());
-            TB[aux].setEnabled(true);
-            aux++;
+            if (mesa.isEstadoMesa()){
+                TB[aux].setText("Mesa " + mesa.getNumeroMesa());
+                TB[aux].setEnabled(true);
+                if (mesa.isDisponibilidad())
+                    TB[aux].setBackground(new Color(156, 255, 51));// Verde Libre
+                else
+                    TB[aux].setBackground(new Color(255,51,0));//Rojo Ocupada
+                aux++;
+            }
+
         }
     }
 }

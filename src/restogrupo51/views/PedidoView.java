@@ -50,10 +50,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
     /**
      * Creates new form PedidoViews
      */
-    public PedidoView() {
+    public PedidoView(Mesa mesa) {
         initComponents();
         armarCabecera();
         armarCabecera2();
+        llenarCampos(mesa);
     }
 
     /**
@@ -104,6 +105,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         ModificarCantidad = new javax.swing.JButton();
 
+        setClosable(true);
+
         TablaPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -146,7 +149,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         LabelID.setText("ID");
 
+        CampoID.setEditable(false);
+
         LabelMesa.setText("Mesa");
+
+        CampoNumeroMesa.setEditable(false);
 
         Limpiar.setText("Limpiar");
         Limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -232,9 +239,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                 .addContainerGap(34, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(Modificar))
+                                    .addComponent(Modificar)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,20 +687,21 @@ public class PedidoView extends javax.swing.JInternalFrame {
             modelo2.removeRow(f);
         }
     }
-    /*
+    
     private void llenarCampos(Mesa mesa) {
 
         String id2 = mesa.getIdMesa() + "";
-        Mid.setText(id2);
-        String numero = mesa.getNumMesa() + "";
-        Mnumero.setText(numero);
+        Lockid.setText(id2);
+        String numero = mesa.getNumeroMesa() + "";
+        Locknumero.setText(numero);
         String cap = mesa.getCapacidad() + "";
-        Mcap.setText(cap);
+        Lockcapacidad.setText(cap);
         if (mesa.isDisponibilidad() == true) {
-            Mdisp.setText("Libre");
+            Lockdisponibilidad.setText("Libre");
         } else {
-            Mdisp.setText("Ocupada");
+            Lockdisponibilidad.setText("Ocupada");
         }
+        CampoNumeroMesa.setText(mesa.getIdMesa() + "");
     }
-    */
+    
 }
