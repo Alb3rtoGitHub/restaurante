@@ -490,7 +490,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
             jbtnGuardar.setEnabled(true);
             jbtnModificar.setEnabled(false);
         }
-        System.out.println("El campo cambio de valor3"+ jtxtId.getText());
     }//GEN-LAST:event_jtxtIdCaretUpdate
 
 
