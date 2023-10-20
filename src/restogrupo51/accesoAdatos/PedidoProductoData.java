@@ -197,7 +197,7 @@ public class PedidoProductoData {
     public double calcularTotal(int idPedido){
         String sql = "SELECT (pr.precio * pp.cantidad) AS subtotal FROM pedidoproducto pp INNER JOIN producto pr ON (pp.idProducto = pr.idProducto) INNER JOIN pedido pe ON (pp.idPedido = pe.idPedido) WHERE pp.idPedido = ?";
         double subtotal = 0, total = 0;
-        
+        pedidodata = new PedidoData();
         try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPedido);
@@ -212,7 +212,19 @@ public class PedidoProductoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido Producto " + ex.getMessage());
         }
         
+        String sql2 = "UPDATE pedido SET importe = ? WHERE idPedido = ?";
+        try {
+            PreparedStatement ps2 = con.prepareStatement(sql2);
+            ps2.setDouble(1, total);
+            ps2.setInt(2, idPedido);
+            int exito = ps2.executeUpdate();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pedido " + ex.getMessage());
+        }
+        pedidodata.buscarPedido(idPedido).setImporte(total);
+        
         return total;
+        
     }
     
     public double precioTotalXFecha(LocalDate fecha){

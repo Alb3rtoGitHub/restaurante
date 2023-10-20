@@ -54,7 +54,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         armarCabecera2();
-        llenarCampos(mesa);
+        objetoMesa = mesa;
+        llenarCampos(objetoMesa);
+        ListaDeMesa();
+        mas.setEnabled(false);
+        menos.setEnabled(false);
+        TablaPedido.getColumnModel().getColumn(0).setPreferredWidth(15);
+        TablaPedido.getColumnModel().getColumn(1).setPreferredWidth(40);
+        TablaPedido.getColumnModel().getColumn(2).setPreferredWidth(55);
+        TablaPedido.getColumnModel().getColumn(3).setPreferredWidth(130);
+        TablaPedido.getColumnModel().getColumn(4).setPreferredWidth(70);
+        TablaPedido.getColumnModel().getColumn(5).setPreferredWidth(50);
+        
     }
 
     /**
@@ -211,19 +222,12 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(LabelID)
-                                    .addGap(65, 65, 65))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(LabelMesa)
-                                    .addGap(45, 45, 45)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LabelMesero)
-                                    .addComponent(LabelFecha)
-                                    .addComponent(LabelCobrada))
-                                .addGap(28, 28, 28)))
+                            .addComponent(LabelID)
+                            .addComponent(LabelMesero)
+                            .addComponent(LabelFecha)
+                            .addComponent(LabelCobrada)
+                            .addComponent(LabelMesa))
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(CampoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,9 +273,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
                     .addComponent(CampoID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Limpiar))
                 .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelMesa)
-                    .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(LabelMesa))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelMesero)
@@ -320,6 +324,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
         Lockcapacidad.setEditable(false);
 
         Lockdisponibilidad.setEditable(false);
+
+        contador.setEditable(false);
 
         mas.setText("+");
         mas.addActionListener(new java.awt.event.ActionListener() {
@@ -457,23 +463,23 @@ public class PedidoView extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /*
+    
         private void ListaDeMesa() {
         try {
             int id = objetoMesa.getIdMesa();
             borrarFilas();
             for (Pedido pedidoaux : pedido.listarPedidoPorMesa(id)) {
-                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumMesa(), pedidoaux.getNombreMesero(), pedidoaux.getfechaHoraPedido(), pedidoaux.getImporte(), pedidoaux.isCobrada()});
+                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), pedidoaux.isCobrada()});
                 pp.calcularTotal(pedidoaux.getIdPedido());
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, " " + ex.getMessage());
         }
     }
-    */
+    
     
     private void registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarActionPerformed
-        /*
+        
         try {
             int NumeroMesa = Integer.parseInt(CampoNumeroMesa.getText());
             Mesa item = mesa.buscarMesaPorNumero(NumeroMesa);
@@ -487,7 +493,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
             Pedido aux = new Pedido(item, mese, fechaHora, imp, estado);
 
-            if (Menu.isSelectionEmpty()) {
+            if (MenuProductos.isSelectionEmpty()) {
                 JOptionPane.showMessageDialog(this, "Error al querer crear pedido, No hay seleccionado ningun producto!");
             } else {
                 pedido.registrarPedido(aux);
@@ -495,7 +501,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 borrarFilas();
                 List<Pedido> pedidosnuevos = pedido.listarPedidoPorMesa(objetoMesa.getIdMesa());
                 for (Pedido ListaPedidos : pedidosnuevos) {
-                    modelo.addRow(new Object[]{ListaPedidos.getIdPedido(), ListaPedidos.getMesa().getNumMesa(), ListaPedidos.getNombreMesero(), ListaPedidos.getfechaHoraPedido(), ListaPedidos.getImporte(), ListaPedidos.isCobrada()});
+                    modelo.addRow(new Object[]{ListaPedidos.getIdPedido(), ListaPedidos.getMesa().getNumeroMesa(), ListaPedidos.getNombreMesero(), ListaPedidos.getFechaHoraPedido(), ListaPedidos.getImporte(), ListaPedidos.isCobrada()});
                 }
                 
                 for (Producto productos : MenuProductos.getSelectedValuesList()) {
@@ -509,7 +515,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, " " + ex.getMessage());
         }
-        */
+        
     }//GEN-LAST:event_registrarActionPerformed
 
     private void TablaPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPedidoMouseClicked
