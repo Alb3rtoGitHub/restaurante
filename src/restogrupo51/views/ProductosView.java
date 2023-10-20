@@ -26,6 +26,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarTabla();
         getContentPane().setBackground(new Color(255,205,110));
+        jradbtnActivo.setSelected(true);
         
         // Cambiar el color de fondo de las cabeceras de columna
         JTableHeader header = jtblProductos.getTableHeader();
@@ -113,6 +114,11 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jLabel8.setText("Estado");
 
         jtxtId.setEditable(false);
+        jtxtId.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jtxtIdCaretUpdate(evt);
+            }
+        });
 
         jbtnGuardar.setBackground(new java.awt.Color(255, 205, 110));
         jbtnGuardar.setText("Guardar");
@@ -149,6 +155,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
         jbtnModificar.setBackground(new java.awt.Color(255, 205, 110));
         jbtnModificar.setText("Modificar");
+        jbtnModificar.setEnabled(false);
         jbtnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnModificarActionPerformed(evt);
@@ -185,7 +192,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(jbtnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jbtnModificar)
@@ -516,6 +523,19 @@ public class ProductosView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jbtnBuscarPorCodigoActionPerformed
 
+    private void jtxtIdCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jtxtIdCaretUpdate
+        // TODO add your handling code here:
+        if (!"".equals(jtxtId.getText())){
+            jbtnGuardar.setEnabled(false);
+            jbtnModificar.setEnabled(true);
+        }
+        else{
+            jbtnGuardar.setEnabled(true);
+            jbtnModificar.setEnabled(false);
+        }
+        System.out.println("El campo cambio de valor3"+ jtxtId.getText());
+    }//GEN-LAST:event_jtxtIdCaretUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup grupoBotonesActivo;
@@ -600,7 +620,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jtxtNombre.setText("");
         jtxtPrecio.setText("");
         jtxtStock.setText("");
-        grupoBotonesActivo.clearSelection();
+        jradbtnActivo.setSelected(true);
     }
 }
 
