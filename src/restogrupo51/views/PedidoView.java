@@ -5,13 +5,18 @@
  */
 package restogrupo51.views;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.sql.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import restogrupo51.accesoAdatos.MesaData;
 import restogrupo51.accesoAdatos.PedidoData;
 import restogrupo51.accesoAdatos.PedidoProductoData;
@@ -62,6 +67,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
         cargarLista();
         mas.setEnabled(false);
         menos.setEnabled(false);
+        getContentPane().setBackground(new Color(255, 205, 110));
+        JTableHeader header = TablaPedido.getTableHeader();
+        JTableHeader header2 = TablaProducto.getTableHeader();
+        header.setDefaultRenderer(new CustomHeaderRenderer());
+        header2.setDefaultRenderer(new CustomHeaderRenderer());
         TablaPedido.getColumnModel().getColumn(0).setPreferredWidth(15);
         TablaPedido.getColumnModel().getColumn(1).setPreferredWidth(40);
         TablaPedido.getColumnModel().getColumn(2).setPreferredWidth(55);
@@ -117,6 +127,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         total = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         ModificarCantidad = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -156,8 +167,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(TablaProducto);
 
+        jPanel1.setBackground(new java.awt.Color(255, 205, 110));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel6.setText("REGISTRO PEDIDO");
 
         LabelID.setText("ID");
@@ -168,6 +181,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         CampoNumeroMesa.setEditable(false);
 
+        Limpiar.setBackground(new java.awt.Color(255, 205, 110));
+        Limpiar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Limpiar.setText("Limpiar");
         Limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -184,13 +199,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
         LabelCobrada.setText("Cobrada");
 
         buttonGroup1.add(NO);
+        NO.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         NO.setText("No");
 
         buttonGroup1.add(SI);
+        SI.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         SI.setText("Si");
 
+        MenuProductos.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(MenuProductos);
 
+        registrar.setBackground(new java.awt.Color(255, 205, 110));
+        registrar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         registrar.setText("Registrar");
         registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +218,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
+        Modificar.setBackground(new java.awt.Color(255, 205, 110));
+        Modificar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -235,7 +257,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                                         .addComponent(NO)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(SI)))
-                                .addContainerGap(34, Short.MAX_VALUE))
+                                .addContainerGap(17, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Modificar)
@@ -253,7 +275,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addGap(110, 110, 110))
+                .addGap(92, 92, 92))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +310,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrar)
                     .addComponent(Modificar))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         LogoPedido.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -317,6 +339,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         Lockdisponibilidad.setEditable(false);
 
         contador.setEditable(false);
+        contador.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
         mas.setText("+");
         mas.addActionListener(new java.awt.event.ActionListener() {
@@ -332,6 +355,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ticketIcon.png"))); // NOI18N
         jLabel1.setText("Importe");
 
         total.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -340,6 +366,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel3.setText("$");
 
+        ModificarCantidad.setBackground(new java.awt.Color(255, 205, 110));
+        ModificarCantidad.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         ModificarCantidad.setText("Modificar Cantidad");
         ModificarCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,13 +375,18 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
+        jLabel2.setText("PRODUCTOS");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(LogoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -378,77 +411,91 @@ public class PedidoView extends javax.swing.JInternalFrame {
                             .addComponent(Lockdisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Locknumero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(184, 184, 184)
-                                .addComponent(jLabel1)
-                                .addGap(45, 45, 45)
+                                .addGap(125, 125, 125)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
                                 .addComponent(total)
                                 .addGap(32, 32, 32)
                                 .addComponent(jLabel3))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(51, 51, 51)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(187, 187, 187)
+                                .addGap(44, 44, 44)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ModificarCantidad)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(menos)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(mas)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGap(106, 106, 106)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(ModificarCantidad)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(menos)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(mas)))
+                                        .addGap(70, 70, 70))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(27, 27, 27)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(LogoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36))
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LockLabel1)
-                            .addComponent(Lockid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LockLabel2)
-                            .addComponent(Locknumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(LockLabel3)
-                            .addComponent(LockLabel4)
-                            .addComponent(Lockcapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Lockdisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(mas)
-                    .addComponent(menos))
-                .addGap(10, 10, 10)
-                .addComponent(ModificarCantidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(total)
-                    .addComponent(jLabel3))
-                .addGap(23, 23, 23))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LogoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(36, 36, 36))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(LockLabel1)
+                                    .addComponent(Lockid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(LockLabel2)
+                                    .addComponent(Locknumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(LockLabel3)
+                                    .addComponent(LockLabel4)
+                                    .addComponent(Lockcapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Lockdisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(contador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(mas)
+                                    .addComponent(menos))
+                                .addGap(10, 10, 10)
+                                .addComponent(ModificarCantidad)
+                                .addGap(18, 18, 18))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(total)
+                                    .addComponent(jLabel3))
+                                .addGap(30, 30, 30))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)))))
+                .addContainerGap())
         );
 
         pack();
@@ -465,8 +512,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 } else {
                     estado = "NO";
                 }
-                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), estado});
                 pp.calcularTotal(pedidoaux.getIdPedido());
+                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), estado});
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, " " + ex.getMessage());
@@ -526,9 +573,9 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 menos.setEnabled(false);
                 double monto = pp.calcularTotal(idped);
                 total.setText(String.valueOf(monto));
-                
+
                 Pedido nuevo = pedido.buscarPedido(idped);
-                
+
                 String id = nuevo.getIdPedido() + "";
                 CampoID.setText(id);
                 String mesero = nuevo.getNombreMesero();
@@ -538,7 +585,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 } else {
                     NO.setSelected(true);
                 }
-                
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error " + ex.getMessage());
@@ -566,12 +613,30 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
     private void menosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menosActionPerformed
         int restado = Integer.parseInt(contador.getText());
-        if (restado > 1) {
+        if (restado >= 1) {
             restado--;
             contador.setText(String.valueOf(restado));
-        } else {
-            JOptionPane.showMessageDialog(this, "No se puede dejar con 0 platos del mismo!");
         }
+
+        if (restado == 0) {
+            restado--;
+            int opcion = JOptionPane.showConfirmDialog(null, "El producto estara en 0 entoces ¿Desea eliminar el producto del pedido?", "Confirmar Eliminacion", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                String idSTR = TablaProducto.getValueAt(TablaProducto.getSelectedRow(), 0).toString();
+                int id = Integer.parseInt(idSTR);
+                pp.eliminarPedidoConProducto(id);
+                borrarFilas2();
+                String auxSTR = TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0).toString();
+                int aux = Integer.parseInt(auxSTR);
+                pp.calcularTotal(pedido.buscarPedido(aux).getIdPedido());
+            } else {
+                JOptionPane.showMessageDialog(this, "No se ha eliminado, entonces habra el minimo de ese plato (1)");
+                String numero = 1 + "";
+                contador.setText(numero);
+            }
+        }
+
+        ListaDeMesa();
     }//GEN-LAST:event_menosActionPerformed
 
     private void ModificarCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarCantidadActionPerformed
@@ -661,6 +726,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextField contador;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -729,5 +795,17 @@ public class PedidoView extends javax.swing.JInternalFrame {
         Producto[] arreglo = lista.toArray(new Producto[0]);
         MenuProductos.setListData(arreglo);
     }
-    
+
+    class CustomHeaderRenderer extends DefaultTableCellRenderer {
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+
+            // Cambiar el color de fondo de la cabecera de columna
+            c.setBackground(new java.awt.Color(255, 205, 110)); // Cambia este color según tus preferencias
+
+            return c;
+        }
+    }
 }
