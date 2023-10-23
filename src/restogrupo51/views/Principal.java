@@ -65,11 +65,10 @@ public class Principal extends javax.swing.JFrame {
         jbtnProductos = new javax.swing.JButton();
         jbtnMesas = new javax.swing.JButton();
         Bpedidos = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jbtnConsultas = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setBackground(new java.awt.Color(255, 205, 110));
 
@@ -242,13 +241,13 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultaIcon.png"))); // NOI18N
-        jButton4.setText("Consultas");
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jbtnConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultaIcon.png"))); // NOI18N
+        jbtnConsultas.setText("Consultas");
+        jbtnConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnConsultas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbtnConsultas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jbtnConsultasActionPerformed(evt);
             }
         });
 
@@ -260,7 +259,7 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayer(jbtnProductos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jbtnMesas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(Bpedidos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jbtnConsultas, javax.swing.JLayeredPane.DEFAULT_LAYER);
         escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
@@ -273,7 +272,7 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
                         .addComponent(jbtnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
@@ -293,7 +292,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbtnProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbtnMesas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jbtnConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(escritorioLayout.createSequentialGroup()
                         .addGap(98, 98, 98)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -360,9 +359,13 @@ public class Principal extends javax.swing.JFrame {
         ActDescBotones(TBmesa7);
     }//GEN-LAST:event_TBmesa7ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jbtnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConsultasActionPerformed
+        escritorio.repaint();
+        ConsultasView CV = new ConsultasView();
+        CV.setVisible(true);
+        escritorio.add(CV);
+        escritorio.moveToFront(CV);
+    }//GEN-LAST:event_jbtnConsultasActionPerformed
 
     private void BpedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BpedidosActionPerformed
         //System.out.println("La mesa seleccionada es la: " + mesaSelect);
@@ -430,9 +433,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JToggleButton TBmesa7;
     private javax.swing.JToggleButton TBmesa8;
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtnConsultas;
     private javax.swing.JButton jbtnMesas;
     private javax.swing.JButton jbtnProductos;
     // End of variables declaration//GEN-END:variables
