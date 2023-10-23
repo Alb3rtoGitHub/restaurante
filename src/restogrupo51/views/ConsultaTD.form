@@ -83,7 +83,7 @@
           <Font name="Segoe UI" size="14" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="Precio Total de una Fecha"/>
+        <Property name="text" type="java.lang.String" value="Ingreso Total de una Fecha"/>
         <Property name="opaque" type="boolean" value="true"/>
       </Properties>
     </Component>

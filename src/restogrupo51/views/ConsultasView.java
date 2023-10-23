@@ -86,7 +86,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         
         String seleccion = String.valueOf(jcbConsultas.getSelectedItem());
         
-        if(seleccion.equals("Precio Total de una Fecha")){
+        if(seleccion.equals("Ingreso Total de una Fecha")){
             
             panelConsultas.removeAll();
             panelConsultas.repaint();
@@ -190,7 +190,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
 
     private void comboBox(){
         jcbConsultas.removeAllItems();
-        modeloCB.addElement("Precio Total de una Fecha");
+        modeloCB.addElement("Ingreso Total de una Fecha");
         modeloCB.addElement("Productos de un Pedido");
         modeloCB.addElement("Pedidos con Productos");
         modeloCB.addElement("Pedidos por Mesero");

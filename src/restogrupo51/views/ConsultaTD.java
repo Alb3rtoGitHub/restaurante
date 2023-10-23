@@ -37,7 +37,7 @@ public class ConsultaTD extends javax.swing.JInternalFrame {
         jLabel1.setBackground(new java.awt.Color(255, 205, 110));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Precio Total de una Fecha");
+        jLabel1.setText("Ingreso Total de una Fecha");
         jLabel1.setOpaque(true);
 
         jLabel4.setText("Fecha:");
