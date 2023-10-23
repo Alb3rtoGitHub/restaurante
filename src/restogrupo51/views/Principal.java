@@ -477,14 +477,14 @@ public class Principal extends javax.swing.JFrame {
     }
     
     public void ActualizarPantallaPrincipal (){
-        int aux=0;
-            
+        // Elimina datos de los botones   
         for (javax.swing.JToggleButton botones : TB){
-            TB[aux].setText("");
-            TB[aux].setEnabled(false);
-            aux++;
+            botones.setText("");
+            botones.setEnabled(false);
         }
-        aux=0;
+        
+       // Carga las mesas de la db en los botones
+        int aux=0;
         for (Mesa mesa : mesaData.listarMesas()){
             if (mesa.isEstadoMesa()){
                 TB[aux].setText("Mesa " + mesa.getNumeroMesa());
