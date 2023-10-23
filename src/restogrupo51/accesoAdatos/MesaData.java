@@ -177,7 +177,7 @@ public class MesaData {
     
     public List<Mesa> listarMesas(){
                 
-        String sql = "SELECT * From mesa";// WHERE estadoMesa = 1 ";
+        String sql = "SELECT * From mesa LIMIT 8";// WHERE estadoMesa = 1 ";
         ArrayList<Mesa> mesas = new ArrayList<>();
         
         try {
@@ -203,5 +203,27 @@ public class MesaData {
         }
        
         return mesas;
+    }
+    
+    public int cantidadMesa(){
+        String sql = "SELECT COUNT(*) FROM mesa;";
+        int cantidad = 0;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            
+            if (rs.next()) {
+                cantidad = rs.getInt(1); // El resultado del conteo
+            }
+            rs.close();
+            ps.close();
+            
+                
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a tabla Mesa " + ex.getMessage());
+        }
+       
+        return cantidad;
     }
 }

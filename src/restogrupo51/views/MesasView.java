@@ -29,7 +29,7 @@ public class MesasView extends javax.swing.JInternalFrame {
         armarCabecera();
         cargarTabla();
         getContentPane().setBackground(new Color(255,205,110));
-        
+            
         // Cambiar el color de fondo de las cabeceras de columna
         JTableHeader header = jtblMesa.getTableHeader();
         header.setDefaultRenderer(new CustomHeaderRenderer());
@@ -330,7 +330,7 @@ public class MesasView extends javax.swing.JInternalFrame {
 
     private void jbtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnEliminarActionPerformed
         MesaData mesaData = new MesaData();
-        
+         
         if (jtblMesa.getSelectedRow() > -1) {
             String idString = jtblMesa.getValueAt(jtblMesa.getSelectedRow(), 0).toString();
             int idMesa = Integer.parseInt(idString);
@@ -372,9 +372,15 @@ public class MesasView extends javax.swing.JInternalFrame {
             Mesa mesa = new Mesa(numero,capacidad,disponibilidad,true);
             MesaData mesaData = new MesaData();
             
-            if (mesa != null) {
-                mesaData.guardarMesa(mesa);
+            if (mesaData.cantidadMesa()<=8){
+                if (mesa != null) {
+                    mesaData.guardarMesa(mesa);
+                }
             }
+            else {
+                JOptionPane.showMessageDialog(this, "No se pueden Agregar mas de 8 Mesas. Restaure Mesas Eliminadas si nececita.");
+            }
+ 
             borrarFilas();
             cargarTabla();
             borrarDatos();
