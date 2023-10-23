@@ -90,6 +90,28 @@ public class MesaData {
         }
     }
     
+        public void restaurarMesa(int idMesa){
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Esta seguro que desea restaurar la Mesa?", "Confirmar restaurar Mesa", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+            String sql = "UPDATE mesa SET estadoMesa = 1 WHERE idMesa=? AND disponibilidad = 1";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, idMesa);
+                
+                int exito = ps.executeUpdate();
+                if (exito == 1){
+                    JOptionPane.showMessageDialog(null, "La Mesa se restauro.");
+                }else if (exito == 0) {
+                    JOptionPane.showMessageDialog(null, "No se puede restaurar la Mesa.");
+                }
+                ps.close();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al acceder a tabla Mesa " + ex.getMessage());
+            }
+        }
+    }
+    
     public Mesa buscarMesaPorId(int idMesa){
         String sql = "SELECT numeroMesa, capacidad, disponibilidad, estadoMesa FROM mesa "
                 + "WHERE idMesa = ?";// AND estadoMesa = 1";
