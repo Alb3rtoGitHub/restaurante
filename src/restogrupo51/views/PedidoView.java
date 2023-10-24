@@ -73,6 +73,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         mas.setEnabled(false);
         menos.setEnabled(false);
         ModificarCantidad.setEnabled(false);
+        NO.setSelected(true);
         //Coloca color a los cabezales de las tablas
         getContentPane().setBackground(new Color(255, 205, 110));
         JTableHeader header = TablaPedido.getTableHeader();
@@ -116,7 +117,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
         CampoFechaHora = new com.toedter.calendar.JDateChooser();
         LabelCobrada = new javax.swing.JLabel();
         NO = new javax.swing.JRadioButton();
-        SI = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         MenuProductos = new javax.swing.JList<>();
         registrar = new javax.swing.JButton();
@@ -215,10 +215,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
         NO.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         NO.setText("No");
 
-        buttonGroup1.add(SI);
-        SI.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        SI.setText("Si");
-
         MenuProductos.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(MenuProductos);
 
@@ -252,27 +248,27 @@ public class PedidoView extends javax.swing.JInternalFrame {
                     .addComponent(LabelFecha)
                     .addComponent(LabelCobrada)
                     .addComponent(LabelMesa))
-                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(CampoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CampoFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(NO)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SI)))
-                        .addContainerGap(11, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CampoID))
-                        .addGap(18, 18, 18)
-                        .addComponent(Limpiar)
-                        .addGap(19, 19, 19))))
+                                .addComponent(CampoMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(CampoFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(12, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoID))
+                                .addGap(18, 18, 18)
+                                .addComponent(Limpiar)
+                                .addGap(19, 19, 19))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(NO)
+                        .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel6)
@@ -312,8 +308,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelCobrada)
-                    .addComponent(NO)
-                    .addComponent(SI))
+                    .addComponent(NO))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -574,9 +569,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 LocalDateTime fechaHora = CampoFechaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
                 double imp = 0;
                 boolean estado = false;
-                if (buttonGroup1.isSelected(SI.getModel())) {
-                    estado = true;
-                }
 
                 if (item != null) {
                     Pedido aux = new Pedido(item, mese, fechaHora, imp, estado);
@@ -648,8 +640,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 String mesero = nuevo.getNombreMesero();
                 CampoMesero.setText(mesero);
                 if (nuevo.isCobrada()) {
-                    SI.setSelected(true);
-                } else {
                     NO.setSelected(true);
                 }
 
@@ -741,7 +731,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
         CampoID.setText("");
         CampoMesero.setText("");
         CampoFechaHora.setDate(null);
-        buttonGroup1.clearSelection();
+        NO.setSelected(true);
+        //buttonGroup1.clearSelection();
     }//GEN-LAST:event_LimpiarActionPerformed
     //Se usa para modificar datos del pedido y tambien productos.
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
@@ -752,9 +743,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
             String nombre = CampoMesero.getText();
             LocalDateTime fechaHora = CampoFechaHora.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             boolean estado = false;
-            if (buttonGroup1.isSelected(SI.getModel())) {
-                estado = true;
-            }
 
             Pedido ped = new Pedido(id, mes, nombre, fechaHora, 0, estado);
             pedido.modificarPedido(ped);
@@ -865,7 +853,6 @@ public class PedidoView extends javax.swing.JInternalFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JButton ModificarCantidad;
     private javax.swing.JRadioButton NO;
-    private javax.swing.JRadioButton SI;
     private javax.swing.JTable TablaPedido;
     private javax.swing.JTable TablaProducto;
     private javax.swing.ButtonGroup buttonGroup1;
