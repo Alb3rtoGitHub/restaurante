@@ -211,6 +211,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
+        jbtnProductos.setBackground(new java.awt.Color(255, 205, 110));
         jbtnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
         jbtnProductos.setText("Productos");
         jbtnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -221,6 +222,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jbtnMesas.setBackground(new java.awt.Color(255, 205, 110));
         jbtnMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon2.png"))); // NOI18N
         jbtnMesas.setText("Mesas");
         jbtnMesas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -231,6 +233,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        Bpedidos.setBackground(new java.awt.Color(255, 205, 110));
         Bpedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidosIcon.png"))); // NOI18N
         Bpedidos.setText("Pedidos");
         Bpedidos.setEnabled(false);
@@ -241,6 +244,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jbtnConsultas.setBackground(new java.awt.Color(255, 205, 110));
         jbtnConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultaIcon.png"))); // NOI18N
         jbtnConsultas.setText("Consultas");
         jbtnConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
