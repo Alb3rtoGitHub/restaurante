@@ -551,14 +551,12 @@ public class PedidoView extends javax.swing.JInternalFrame {
             String estado = "";
             borrarFilas();
             for (Pedido pedidoaux : pedido.listarPedidoPorMesa(id)) {
-                if (pedidoaux.isCobrada()) {
-                    estado = "SI";
-                    total.setText(String.valueOf("Cobrado"));
-                } else {
+                if (!pedidoaux.isCobrada()) {
                     estado = "NO";
+                    pp.calcularTotal(pedidoaux.getIdPedido());
+                    modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), estado});
                 }
-                pp.calcularTotal(pedidoaux.getIdPedido());
-                modelo.addRow(new Object[]{pedidoaux.getIdPedido(), pedidoaux.getMesa().getNumeroMesa(), pedidoaux.getNombreMesero(), pedidoaux.getFechaHoraPedido(), pedidoaux.getImporte(), estado});
+
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, " " + ex.getMessage());
@@ -583,20 +581,33 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 if (item != null) {
                     Pedido aux = new Pedido(item, mese, fechaHora, imp, estado);
 
-                    if (MenuProductos.isSelectionEmpty()) {
-                        JOptionPane.showMessageDialog(this, "Error al querer crear pedido, No hay seleccionado ningun producto!");
-                    } else {
-                        pedido.registrarPedido(aux);
+                    if (!MenuProductos.isSelectionEmpty()) {
 
-                        for (Producto productos : MenuProductos.getSelectedValuesList()) {
-                            String cantSTR = JOptionPane.showInputDialog("Ingrese una cantidad para el producto: " + productos.getNombreProducto());
-                            int cant = Integer.parseInt(cantSTR);
-                            PedidoProducto PedidoProductoNuevo = new PedidoProducto(aux, productos, cant);
-                            pp.agregarPedidoProducto(PedidoProductoNuevo);
+                        pedido.registrarPedido(aux);
+                        objetoMesa = mesa.buscarMesaPorId(objetoMesa.getIdMesa());
+                        if (objetoMesa.isDisponibilidad()) {
+                            Lockdisponibilidad.setText("Libre");
+                        } else {
+                            Lockdisponibilidad.setText("Ocupada");
                         }
-                        pp.calcularTotal(aux.getIdPedido());
-                        ListaDeMesa();
+
+                        if (!objetoMesa.isDisponibilidad()) {
+                            for (Producto productos : MenuProductos.getSelectedValuesList()) {
+                                String cantSTR = JOptionPane.showInputDialog("Ingrese una cantidad para el producto: " + productos.getNombreProducto());
+                                int cant = Integer.parseInt(cantSTR);
+                                PedidoProducto PedidoProductoNuevo = new PedidoProducto(aux, productos, cant);
+                                pp.agregarPedidoProducto(PedidoProductoNuevo);
+                            }
+                            
+                            MenuProductos.clearSelection();
+                            pp.calcularTotal(aux.getIdPedido());
+                            ListaDeMesa();
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Error al querer crear pedido, No hay seleccionado ningun producto!");
                     }
+
                 }
 
             } else {
@@ -605,6 +616,8 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         } catch (NullPointerException A) {
             JOptionPane.showMessageDialog(this, "Falta completar campos");
+        } catch (NumberFormatException B) {
+
         }
 
     }//GEN-LAST:event_registrarActionPerformed
@@ -684,6 +697,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 String auxSTR = TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0).toString();
                 int aux = Integer.parseInt(auxSTR);
                 pp.calcularTotal(pedido.buscarPedido(aux).getIdPedido());
+                ListaDeMesa();
+                mas.setEnabled(false);
+                menos.setEnabled(false);
+                ModificarCantidad.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(this, "No se ha eliminado, entonces habra el minimo de ese plato (1)");
                 String numero = 1 + "";
@@ -767,28 +784,34 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 }
 
             }
-
+            MenuProductos.clearSelection();
             pp.calcularTotal(ped.getIdPedido());
             ListaDeMesa();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error al llenar campos, verifique que este seleccionado un ID para modificar!");
         }
     }//GEN-LAST:event_ModificarActionPerformed
-
+    //Elimina un pedido
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         if (TablaPedido.getSelectedRow() > -1) {
             int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
             pedido.eliminarPedido(idped);
             total.setText(String.valueOf(0 + ""));
-            borrarFilas2();
             ListaDeMesa();
-
+            borrarFilas2();
+            
+            if (TablaPedido.getRowCount() == 0) {
+                objetoMesa.setDisponibilidad(true);
+                mesa.modificarMesa(objetoMesa);
+                Lockdisponibilidad.setText("Libre");
+            }
+            
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un pedido de la tabla para eliminar!");
         }
 
     }//GEN-LAST:event_EliminarActionPerformed
-
+    //Realiza la cobranza de un pedido
     private void CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CobrarActionPerformed
         int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
         Pedido nuevo = pedido.buscarPedido(idped);
@@ -798,20 +821,23 @@ public class PedidoView extends javax.swing.JInternalFrame {
         } else {
             nuevo.setCobrada(true);
             pedido.modificarPedido(nuevo);
-
+            
             for (Pedido aux : pedido.listarPedidoPorMesa(objetoMesa.getIdMesa())) {
                 if (!aux.isCobrada()) {
                     todosCobrados = false;
                     break;
                 }
-                if (todosCobrados) {
-                    objetoMesa.setDisponibilidad(true);
-                    mesa.modificarMesa(objetoMesa);
-                    Lockdisponibilidad.setText("Libre");
-                }
+            }
+
+            if (todosCobrados) {
+                objetoMesa.setDisponibilidad(true);
+                mesa.modificarMesa(objetoMesa);
+                Lockdisponibilidad.setText("Libre");
             }
         }
-
+        
+        total.setText(0 + "");
+        borrarFilas2();
         ListaDeMesa();
     }//GEN-LAST:event_CobrarActionPerformed
 
