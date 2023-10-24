@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2023 a las 21:29:28
+-- Tiempo de generación: 24-10-2023 a las 21:47:58
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -34,6 +34,15 @@ CREATE TABLE `mesa` (
   `disponibilidad` tinyint(1) NOT NULL,
   `estadoMesa` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `mesa`
+--
+
+INSERT INTO `mesa` (`idMesa`, `numeroMesa`, `capacidad`, `disponibilidad`, `estadoMesa`) VALUES
+(1, 1, 2, 1, 1),
+(2, 2, 4, 1, 1),
+(3, 3, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -79,6 +88,24 @@ CREATE TABLE `producto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `producto`
+--
+
+INSERT INTO `producto` (`idProducto`, `codigoProducto`, `nombreProducto`, `precio`, `stock`, `estadoProducto`) VALUES
+(1, 'BS001', 'Agua Mineral 5', 500, 100, 1),
+(2, 'BS002', 'Coca-Cola 2,25L', 1100, 50, 1),
+(3, 'BS003', 'Sprite 2,25L', 1000, 40, 1),
+(4, 'BC001', 'Vino Malbec 750ml', 2200, 20, 1),
+(5, 'BC002', 'Fernet - Vaso', 1800, 200, 1),
+(6, 'C001', 'Hamburguesa Clasica', 3000, 15, 1),
+(7, 'C002', 'Hamburgesa Vegana', 3500, 10, 1),
+(8, 'C003', 'Pizza - 8 Porciones', 3500, 30, 1),
+(9, 'C004', 'Lomo Clasico', 3200, 20, 1),
+(10, 'C005', 'Tacos Picantes', 2800, 20, 1),
+(11, 'BC003', 'Cerveza Brahma 1L', 1200, 80, 1),
+(12, 'BS004', 'Agua Saborizada', 800, 30, 1);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -119,7 +146,7 @@ ALTER TABLE `producto`
 -- AUTO_INCREMENT de la tabla `mesa`
 --
 ALTER TABLE `mesa`
-  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idMesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `pedido`
@@ -137,7 +164,7 @@ ALTER TABLE `pedidoproducto`
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
