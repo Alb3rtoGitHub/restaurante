@@ -492,10 +492,12 @@ public class Principal extends javax.swing.JFrame {
             if (mesa.isEstadoMesa()){
                 TB[aux].setText("Mesa " + mesa.getNumeroMesa());
                 TB[aux].setEnabled(true);
-                if (mesa.isDisponibilidad())
-                    TB[aux].setBackground(new Color(156, 255, 51));// Verde Libre
-                else
-                    TB[aux].setBackground(new Color(255,51,0));//Rojo Ocupada
+                if (!TB[aux].isSelected()){
+                    if (mesa.isDisponibilidad())
+                        TB[aux].setBackground(new Color(156, 255, 51));// Verde Libre
+                    else
+                        TB[aux].setBackground(new Color(255,51,0));//Rojo Ocupada
+                }
                 aux++;
             }
 
