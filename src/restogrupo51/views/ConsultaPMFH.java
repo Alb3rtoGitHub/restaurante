@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import restogrupo51.accesoAdatos.PedidoProductoData;
 import restogrupo51.entidades.Pedido;
 
@@ -15,9 +16,18 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
 
     PedidoProductoData ppData = new PedidoProductoData();
     
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
     public ConsultaPMFH() {
         initComponents();
         getContentPane().setBackground(new Color(255,255,255));
+        armarCabecera();
+        tamañoColumnas();
     }
 
     
@@ -33,8 +43,8 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jdcFechaFin = new com.toedter.calendar.JDateChooser();
         jbMostrarLista = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlLista = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtPedido = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -62,19 +72,28 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
             }
         });
 
-        jlLista.setBackground(new java.awt.Color(255, 204, 110));
-        jScrollPane1.setViewportView(jlLista);
+        jtPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtPedido);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel4)
@@ -86,9 +105,10 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
                                 .addComponent(jdcFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jtfMesa, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jbMostrarLista))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addComponent(jbMostrarLista)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,16 +124,16 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(3, 3, 3)))
-                        .addGap(20, 20, 20)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jdcFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                        .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jdcFechaFin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -124,13 +144,15 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
 
         try{
 
+            borrarFilas();
+            
             int mesa = Integer.parseInt(jtfMesa.getText());
             LocalDateTime fecha1 = jdcFechaInicio.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
             LocalDateTime fecha2 = jdcFechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-            List<Pedido> listaPedido = ppData.listarPedidosXMesaEntreFechaYHora(mesa, fecha1, fecha2);
-            Pedido[] arreglo = listaPedido.toArray(new Pedido[0]);
-            jlLista.setListData(arreglo);
+            for (Pedido p :ppData.listarPedidosXMesaEntreFechaYHora(mesa, fecha1, fecha2) ) {
+                modelo.addRow(new Object[]{p.getIdPedido(),p.getNombreMesero(),p.getFechaHoraPedido(),p.getImporte(),p.isCobrada()});
+            }
 
         }catch(NullPointerException ex){
             JOptionPane.showMessageDialog(this, "Debe completar el campo Mesero y seleccionar una Fecha.");
@@ -145,12 +167,37 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbMostrarLista;
     private com.toedter.calendar.JDateChooser jdcFechaFin;
     private com.toedter.calendar.JDateChooser jdcFechaInicio;
-    private javax.swing.JList<Pedido> jlLista;
     private javax.swing.JLabel jlTitulo;
+    private javax.swing.JTable jtPedido;
     private javax.swing.JTextField jtfMesa;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        modelo.addColumn("#");
+        modelo.addColumn("Mesero");
+        modelo.addColumn("Fecha y Hora");
+        modelo.addColumn("Importe");
+        modelo.addColumn("Cobrada");
+        jtPedido.setModel(modelo);
+    }
+    
+    private void borrarFilas() {
+        int f = jtPedido.getRowCount() - 1; 
+        for (; f >= 0; f--) { 
+            modelo.removeRow(f);
+        }
+    }
+    
+    private void tamañoColumnas(){
+        jtPedido.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jtPedido.getColumnModel().getColumn(1).setPreferredWidth(30);
+        jtPedido.getColumnModel().getColumn(2).setPreferredWidth(120);
+        jtPedido.getColumnModel().getColumn(3).setPreferredWidth(50);
+        jtPedido.getColumnModel().getColumn(4).setPreferredWidth(40);
+    }
+
 }

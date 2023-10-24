@@ -3,8 +3,8 @@ package restogrupo51.views;
 
 
 import java.awt.Color;
-import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import restogrupo51.accesoAdatos.PedidoProductoData;
 import restogrupo51.entidades.Pedido;
 
@@ -13,9 +13,18 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
 
     PedidoProductoData ppData = new PedidoProductoData();
     
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
     public ConsultaPM() {
         initComponents();
-        getContentPane().setBackground(new Color(255,255,255));        
+        getContentPane().setBackground(new Color(255,255,255));      
+        armarCabecera();
+        tamañoColumnas();
     }
 
     
@@ -27,8 +36,8 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jtfMesero = new javax.swing.JTextField();
         jbMostrarLista = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlLista = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -47,7 +56,18 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jlLista);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -59,13 +79,13 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jtfMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbMostrarLista)
                 .addGap(46, 46, 46))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +98,7 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
                     .addComponent(jtfMesero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbMostrarLista))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -89,10 +109,13 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
 
         try{
 
+            borrarFilas();
+            
             String mesero = jtfMesero.getText();
-            List<Pedido> listaPedido = ppData.obtenerPedidosXMesero(mesero);
-            Pedido[] arreglo = listaPedido.toArray(new Pedido[0]);
-            jlLista.setListData(arreglo);
+            
+            for (Pedido p :ppData.obtenerPedidosXMesero(mesero) ) {
+                modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa().getNumeroMesa(),p.getFechaHoraPedido(),p.getImporte(),p.isCobrada()});
+            }
 
         }catch(NullPointerException ex){
             JOptionPane.showMessageDialog(this, "Debe completar el campo Mesero");
@@ -103,10 +126,35 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JButton jbMostrarLista;
-    private javax.swing.JList<Pedido> jlLista;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JTextField jtfMesero;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        modelo.addColumn("#");
+        modelo.addColumn("Mesa");
+        modelo.addColumn("Fecha y Hora");
+        modelo.addColumn("Importe");
+        modelo.addColumn("Cobrada");
+        jTable1.setModel(modelo);
+    }
+    
+    private void borrarFilas() {
+        int f = jTable1.getRowCount() - 1; 
+        for (; f >= 0; f--) { 
+            modelo.removeRow(f);
+        }
+    }
+    
+    private void tamañoColumnas(){
+        jTable1.getColumnModel().getColumn(0).setPreferredWidth(20);
+        jTable1.getColumnModel().getColumn(1).setPreferredWidth(70);
+        jTable1.getColumnModel().getColumn(2).setPreferredWidth(130);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+        jTable1.getColumnModel().getColumn(4).setPreferredWidth(50);
+    }
+
 }

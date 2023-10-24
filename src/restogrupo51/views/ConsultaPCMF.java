@@ -5,8 +5,8 @@ package restogrupo51.views;
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import restogrupo51.accesoAdatos.PedidoProductoData;
 import restogrupo51.entidades.Pedido;
 
@@ -15,9 +15,18 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
 
     PedidoProductoData ppData = new PedidoProductoData();
     
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
     public ConsultaPCMF() {
         initComponents();
         getContentPane().setBackground(new Color(255,255,255));
+        armarCabecera();
+        tamañoColumnas();
     }
 
     
@@ -30,9 +39,9 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
         jtfMesero = new javax.swing.JTextField();
         jdcFecha = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlLista = new javax.swing.JList<>();
         jbMostrarLista = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtPedido = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -46,8 +55,6 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Fecha:");
 
-        jScrollPane1.setViewportView(jlLista);
-
         jbMostrarLista.setText("Mostrar Lista");
         jbMostrarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,31 +62,43 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
             }
         });
 
+        jtPedido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtPedido);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jtfMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
-                        .addComponent(jbMostrarLista))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(61, 61, 61)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addComponent(jbMostrarLista)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 20, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,8 +116,8 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jbMostrarLista))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,12 +126,15 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
     private void jbMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarListaActionPerformed
 
         try{
+            
+            borrarFilas();
 
             String mesero = jtfMesero.getText();
             LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            List<Pedido> listaPedido = ppData.listarPedidosXMeseroYFecha(mesero, fecha);
-            Pedido[] arreglo = listaPedido.toArray(new Pedido[0]);
-            jlLista.setListData(arreglo);
+            
+            for (Pedido p :ppData.listarPedidosXMeseroYFecha(mesero, fecha) ) {
+                modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa().getNumeroMesa(),p.getFechaHoraPedido(),p.getImporte(),p.isCobrada()});
+            }
 
         }catch(NullPointerException ex){
             JOptionPane.showMessageDialog(this, "Debe completar el campo Mesero y seleccionar una Fecha.");
@@ -124,11 +146,36 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbMostrarLista;
     private com.toedter.calendar.JDateChooser jdcFecha;
-    private javax.swing.JList<Pedido> jlLista;
     private javax.swing.JLabel jlTitulo;
+    private javax.swing.JTable jtPedido;
     private javax.swing.JTextField jtfMesero;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        modelo.addColumn("#");
+        modelo.addColumn("Mesa");
+        modelo.addColumn("Fecha y Hora");
+        modelo.addColumn("Importe");
+        modelo.addColumn("Cobrada");
+        jtPedido.setModel(modelo);
+    }
+    
+    private void borrarFilas() {
+        int f = jtPedido.getRowCount() - 1; 
+        for (; f >= 0; f--) { 
+            modelo.removeRow(f);
+        }
+    }
+    
+    private void tamañoColumnas(){
+        jtPedido.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jtPedido.getColumnModel().getColumn(1).setPreferredWidth(70);
+        jtPedido.getColumnModel().getColumn(2).setPreferredWidth(145);
+        jtPedido.getColumnModel().getColumn(3).setPreferredWidth(85);
+        jtPedido.getColumnModel().getColumn(4).setPreferredWidth(70);
+    }
+
 }

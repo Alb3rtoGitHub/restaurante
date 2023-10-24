@@ -3,8 +3,8 @@ package restogrupo51.views;
 
 
 import java.awt.Color;
-import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import restogrupo51.accesoAdatos.PedidoProductoData;
 import restogrupo51.entidades.PedidoProducto;
 
@@ -13,9 +13,18 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
 
     PedidoProductoData ppData = new PedidoProductoData();
     
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+    
     public ConsultaPP() {
         initComponents();
         getContentPane().setBackground(new Color(255,255,255));
+        armarCabecera();
+        tamañoColumnas();
     }
 
     
@@ -27,8 +36,8 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jtfPedido = new javax.swing.JTextField();
         jbMostrarLista = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jlLista = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtProducto = new javax.swing.JTable();
 
         setClosable(true);
 
@@ -47,18 +56,24 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
             }
         });
 
-        jlLista.setBackground(new java.awt.Color(255, 204, 110));
-        jScrollPane1.setViewportView(jlLista);
+        jtProducto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jtProducto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -67,6 +82,10 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
                 .addGap(46, 46, 46)
                 .addComponent(jbMostrarLista)
                 .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,7 +98,7 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
                     .addComponent(jtfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbMostrarLista))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -89,12 +108,14 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
     private void jbMostrarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbMostrarListaActionPerformed
 
         try{
+            
+            borrarFilas();
 
             int pedido = Integer.parseInt(jtfPedido.getText());
 
-            List<PedidoProducto> listaPedido = ppData.obtenerPPXPedido(pedido);
-            PedidoProducto[] arreglo = listaPedido.toArray(new PedidoProducto[0]);
-            jlLista.setListData(arreglo);
+            for (PedidoProducto p :ppData.obtenerPPXPedido(pedido) ) {
+                modelo.addRow(new Object[]{p.getProducto().getIdProducto(),p.getProducto().getCodigoProducto(), p.getProducto().getNombreProducto(),p.getProducto().getPrecio(),p.getCantidad()});
+            }
 
         }catch(NullPointerException ex){
             JOptionPane.showMessageDialog(this, "Debe completar el campo Pedido.");
@@ -107,10 +128,35 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbMostrarLista;
-    private javax.swing.JList<PedidoProducto> jlLista;
     private javax.swing.JLabel jlTitulo;
+    private javax.swing.JTable jtProducto;
     private javax.swing.JTextField jtfPedido;
     // End of variables declaration//GEN-END:variables
+
+    private void armarCabecera() {
+        modelo.addColumn("#");
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Cantidad");
+        jtProducto.setModel(modelo);
+    }
+    
+    private void borrarFilas() {
+        int f = jtProducto.getRowCount() - 1; 
+        for (; f >= 0; f--) { 
+            modelo.removeRow(f);
+        }
+    }
+    
+    private void tamañoColumnas(){
+        jtProducto.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jtProducto.getColumnModel().getColumn(1).setPreferredWidth(40);
+        jtProducto.getColumnModel().getColumn(2).setPreferredWidth(145);
+        jtProducto.getColumnModel().getColumn(3).setPreferredWidth(50);
+        jtProducto.getColumnModel().getColumn(4).setPreferredWidth(50);
+    }
+
 }

@@ -1,6 +1,7 @@
 package restogrupo51.views;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.DefaultComboBoxModel;
 
 
@@ -46,11 +47,11 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         panelConsultas.setLayout(panelConsultasLayout);
         panelConsultasLayout.setHorizontalGroup(
             panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panelConsultasLayout.setVerticalGroup(
             panelConsultasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 404, Short.MAX_VALUE)
+            .addGap(0, 468, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -59,13 +60,11 @@ public class ConsultasView extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jcbConsultas, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jcbConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(100, Short.MAX_VALUE))
+            .addComponent(panelConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -75,8 +74,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(panelConsultas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(panelConsultas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,94 +86,95 @@ public class ConsultasView extends javax.swing.JInternalFrame {
         
         if(seleccion.equals("Ingreso Total de una Fecha")){
             
+            
             panelConsultas.removeAll();
             panelConsultas.repaint();
             ConsultaTD td = new ConsultaTD();
+            
+                //Centrar en X
+                Dimension panelSize = panelConsultas.getSize();
+                int x = (panelSize.width - td.getWidth()) / 2;
+                td.setLocation(x, td.getY());
+                
             td.setVisible(true);              
             panelConsultas.add(td);
             
-            /*
-            PanelTD td=new PanelTD();
-            td.setSize(343,198);
-            td.setLocation(0,0);
-            panelConsultas.add(td);
-            panelConsultas.revalidate();
-            */
+            
         }else if(seleccion.equals("Productos de un Pedido")){
             
             panelConsultas.removeAll();
             panelConsultas.repaint();
             ConsultaPP pp = new ConsultaPP();
+            
+                //Centrar en X
+                Dimension panelSize = panelConsultas.getSize();
+                int x = (panelSize.width - pp.getWidth()) / 2;
+                pp.setLocation(x, pp.getY());
+                
             pp.setVisible(true);              
             panelConsultas.add(pp);
             
-            /*
-            PanelPP pp=new PanelPP();
-            pp.setSize(458,300);
-            pp.setLocation(0,0);
-            panelConsultas.add(pp);
-            panelConsultas.revalidate();
-            */
+            
         }else if(seleccion.equals("Pedidos con Productos")){
             
             panelConsultas.removeAll();
             panelConsultas.repaint();
             ConsultaPCP pcp = new ConsultaPCP();
+            
+                //Centrar en X
+                Dimension panelSize = panelConsultas.getSize();
+                int x = (panelSize.width - pcp.getWidth()) / 2;
+                pcp.setLocation(x, pcp.getY());
+                
             pcp.setVisible(true);              
             panelConsultas.add(pcp);
             
-            /*
-            PanelPCP pcp=new PanelPCP();
-            pcp.setSize(500,666);
-            pcp.setLocation(0, 0);
-            panelConsultas.add(pcp);
-            panelConsultas.revalidate();
-            */
+            
         }else if(seleccion.equals("Pedidos por Mesero")){
             
             panelConsultas.removeAll();
             panelConsultas.repaint();
             ConsultaPM pm = new ConsultaPM();
+            
+                //Centrar en X
+                Dimension panelSize = panelConsultas.getSize();
+                int x = (panelSize.width - pm.getWidth()) / 2;
+                pm.setLocation(x, pm.getY());
+                
             pm.setVisible(true);              
             panelConsultas.add(pm);
             
-            /*
-            PanelPM pm=new PanelPM();
-            pm.setSize(503,288);
-            pm.setLocation(0,0);
-            panelConsultas.add(pm);
-            panelConsultas.revalidate();
-            */
+            
         }else if(seleccion.equals("Pedidos Cobrados por Mesero en una Fecha")){
             
             panelConsultas.removeAll();
             panelConsultas.repaint();
             ConsultaPCMF pcmf = new ConsultaPCMF();
+            
+                //Centrar en X
+                Dimension panelSize = panelConsultas.getSize();
+                int x = (panelSize.width - pcmf.getWidth()) / 2;
+                pcmf.setLocation(x, pcmf.getY());
+                
             pcmf.setVisible(true);              
             panelConsultas.add(pcmf);
             
-            /*
-            PanelPCMF pcmf=new PanelPCMF();
-            pcmf.setSize(472,440);
-            pcmf.setLocation(0,0);
-            panelConsultas.add(pcmf);
-            panelConsultas.revalidate();
-            */
+            
         }else if(seleccion.equals("Pedidos por Mesa en una Fecha entre Horas")){
             
             panelConsultas.removeAll();
             panelConsultas.repaint();
             ConsultaPMFH pmfh = new ConsultaPMFH();
+            
+                //Centrar en X
+                Dimension panelSize = panelConsultas.getSize();
+                int x = (panelSize.width - pmfh.getWidth()) / 2;
+                pmfh.setLocation(x, pmfh.getY());
+                
             pmfh.setVisible(true);              
             panelConsultas.add(pmfh);
             
-            /*
-            PanelPMFH pmfh=new PanelPMFH();
-            pmfh.setSize(472,359);
-            pmfh.setLocation(0,0);
-            panelConsultas.add(pmfh);
-            panelConsultas.revalidate();
-            */
+            
         }
                 
         
@@ -199,5 +198,5 @@ public class ConsultasView extends javax.swing.JInternalFrame {
                         
         jcbConsultas.setModel(modeloCB);
     }
-
+    
 }
