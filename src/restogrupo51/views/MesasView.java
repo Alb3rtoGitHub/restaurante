@@ -337,19 +337,23 @@ public class MesasView extends javax.swing.JInternalFrame {
             Mesa mesaBuscar = mesaData.buscarMesaPorId(idMesa);
             if (mesaBuscar.isEstadoMesa())
                 mesaData.eliminarMesa(mesaBuscar.getIdMesa());
-            else
+            else{
                 mesaData.restaurarMesa(mesaBuscar.getIdMesa());
+                jbtnEliminar.setText("Eliminar");
+            }
         } else {
             try{
                 Mesa mesaBuscada = mesaData.buscarMesaPorId(Integer.parseInt(jtxtId.getText()));
                 if (mesaBuscada != null) {
                     if (mesaBuscada.isEstadoMesa())
                         mesaData.eliminarMesa(mesaBuscada.getIdMesa());
-                    else
+                    else{
                         mesaData.restaurarMesa(mesaBuscada.getIdMesa());
+                        jbtnEliminar.setText("Eliminar");
+                    }
                 }
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, "Debe ingresar un numero entero en Buscar");
+                JOptionPane.showMessageDialog(this, "Debe buscar una mesa o seleccionar una mesa de la tabla");
             }
         }
         borrarFilas();
@@ -388,7 +392,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             principal.ActualizarPantallaPrincipal();
             
         }catch(NumberFormatException ex){
-            JOptionPane.showMessageDialog(this, "Debe ingresar un número entero");
+            JOptionPane.showMessageDialog(this, "Debe ingresar un número entero de Número o Capacidad");
             jtxtCapacidad.setText("");
             jtxtNumero.setText("");            
         }catch(NullPointerException ex){

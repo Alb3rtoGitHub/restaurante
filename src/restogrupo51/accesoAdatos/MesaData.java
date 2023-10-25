@@ -102,7 +102,7 @@ public class MesaData {
                 if (exito == 1){
                     JOptionPane.showMessageDialog(null, "La Mesa se restauro.");
                 }else if (exito == 0) {
-                    JOptionPane.showMessageDialog(null, "No se puede restaurar la Mesa.");
+                    JOptionPane.showMessageDialog(null, "No se puede restaurar una Mesa ocupada.");
                 }
                 ps.close();
                 
