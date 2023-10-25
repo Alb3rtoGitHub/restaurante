@@ -95,10 +95,10 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
                         .addComponent(jtfMesero, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
                 .addComponent(jbMostrarLista)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 20, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -183,10 +183,10 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
     }
     
     private void tamañoColumnas(){
-        jtPedido.getColumnModel().getColumn(0).setPreferredWidth(15);
+        jtPedido.getColumnModel().getColumn(0).setPreferredWidth(30);
         jtPedido.getColumnModel().getColumn(1).setPreferredWidth(70);
         jtPedido.getColumnModel().getColumn(2).setPreferredWidth(145);
-        jtPedido.getColumnModel().getColumn(3).setPreferredWidth(85);
+        jtPedido.getColumnModel().getColumn(3).setPreferredWidth(90);
         jtPedido.getColumnModel().getColumn(4).setPreferredWidth(70);
     }
 

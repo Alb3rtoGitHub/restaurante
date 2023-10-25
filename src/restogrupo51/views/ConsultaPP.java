@@ -75,6 +75,10 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -82,11 +86,7 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
                 .addComponent(jtfPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46)
                 .addComponent(jbMostrarLista)
-                .addGap(74, 74, 74))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,11 +153,11 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
     }
     
     private void tamañoColumnas(){
-        jtProducto.getColumnModel().getColumn(0).setPreferredWidth(15);
-        jtProducto.getColumnModel().getColumn(1).setPreferredWidth(40);
-        jtProducto.getColumnModel().getColumn(2).setPreferredWidth(145);
-        jtProducto.getColumnModel().getColumn(3).setPreferredWidth(50);
-        jtProducto.getColumnModel().getColumn(4).setPreferredWidth(50);
+        jtProducto.getColumnModel().getColumn(0).setPreferredWidth(30);
+        jtProducto.getColumnModel().getColumn(1).setPreferredWidth(60);
+        jtProducto.getColumnModel().getColumn(2).setPreferredWidth(160);
+        jtProducto.getColumnModel().getColumn(3).setPreferredWidth(80);
+        jtProducto.getColumnModel().getColumn(4).setPreferredWidth(60);
     }
 
 }

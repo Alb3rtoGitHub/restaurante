@@ -63,10 +63,10 @@ public class ConsultaPCP extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jlTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 743, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                .addComponent(jScrollPane2)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -123,16 +123,16 @@ public class ConsultaPCP extends javax.swing.JInternalFrame {
     }
         
     private void tamañoColumnas(){
-        jtPedido.getColumnModel().getColumn(0).setPreferredWidth(20);
+        jtPedido.getColumnModel().getColumn(0).setPreferredWidth(25);
         jtPedido.getColumnModel().getColumn(1).setPreferredWidth(20);
-        jtPedido.getColumnModel().getColumn(2).setPreferredWidth(50);
+        jtPedido.getColumnModel().getColumn(2).setPreferredWidth(80);
         jtPedido.getColumnModel().getColumn(3).setPreferredWidth(100);
-        jtPedido.getColumnModel().getColumn(4).setPreferredWidth(30);
-        jtPedido.getColumnModel().getColumn(5).setPreferredWidth(30);
-        jtPedido.getColumnModel().getColumn(6).setPreferredWidth(100);
-        jtPedido.getColumnModel().getColumn(7).setPreferredWidth(30);
-        jtPedido.getColumnModel().getColumn(8).setPreferredWidth(30);     
+        jtPedido.getColumnModel().getColumn(4).setPreferredWidth(50);
+        jtPedido.getColumnModel().getColumn(5).setPreferredWidth(40);
+        jtPedido.getColumnModel().getColumn(6).setPreferredWidth(120);
+        jtPedido.getColumnModel().getColumn(7).setPreferredWidth(50);
+        jtPedido.getColumnModel().getColumn(8).setPreferredWidth(45);     
         
     }
-
+    
 }
