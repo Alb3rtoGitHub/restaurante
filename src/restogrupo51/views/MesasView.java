@@ -72,6 +72,7 @@ public class MesasView extends javax.swing.JInternalFrame {
         jbtnBuscarPorNumero = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Gestor de Mesas");
         setPreferredSize(new java.awt.Dimension(785, 500));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -411,7 +412,11 @@ public class MesasView extends javax.swing.JInternalFrame {
                 jtxtId.setText(String.valueOf(mesa.getIdMesa()));
                 jtxtNumero.setText(String.valueOf(mesa.getNumeroMesa()));
                 jtxtCapacidad.setText(String.valueOf(mesa.getCapacidad()));
-                
+                if(mesa.isEstadoMesa()){
+                    jbtnEliminar.setText("Eliminar");
+                }else{
+                    jbtnEliminar.setText("Restaurar");
+                }
                 if(mesa.isDisponibilidad() == true){
                     grupoBotonesLibre.setSelected(jradbtnLibre.getModel(), true);
                 }else{
@@ -425,6 +430,8 @@ public class MesasView extends javax.swing.JInternalFrame {
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
         borrarDatos();
+        if (jtblMesa.getSelectedRow() ==-1)
+            jbtnEliminar.setText("Eliminar");
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jbtnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModificarActionPerformed
@@ -495,6 +502,8 @@ public class MesasView extends javax.swing.JInternalFrame {
                 }
             }
         }
+        else
+            jbtnEliminar.setText("Eliminar");
     }//GEN-LAST:event_jtblMesaMousePressed
 
     private void jtxtBuscarNumeroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtxtBuscarNumeroMouseClicked
@@ -513,7 +522,11 @@ public class MesasView extends javax.swing.JInternalFrame {
                 jtxtId.setText(String.valueOf(mesa.getIdMesa()));
                 jtxtNumero.setText(String.valueOf(mesa.getNumeroMesa()));
                 jtxtCapacidad.setText(String.valueOf(mesa.getCapacidad()));
-                
+                if(mesa.isEstadoMesa()){
+                    jbtnEliminar.setText("Eliminar");
+                }else{
+                    jbtnEliminar.setText("Restaurar");
+                }
                 if(mesa.isDisponibilidad() == true){
                     grupoBotonesLibre.setSelected(jradbtnLibre.getModel(), true);
                 }else{
