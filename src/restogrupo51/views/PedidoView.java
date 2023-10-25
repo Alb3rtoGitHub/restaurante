@@ -801,27 +801,31 @@ public class PedidoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_EliminarActionPerformed
     //Realiza la cobranza de un pedido
     private void CobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CobrarActionPerformed
-        int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
-        Pedido nuevo = pedido.buscarPedido(idped);
-        boolean todosCobrados = true;
-        if (nuevo.isCobrada()) {
-            JOptionPane.showMessageDialog(this, "Este pedido se encuentra cobrado!");
-        } else {
-            nuevo.setCobrada(true);
-            pedido.modificarPedido(nuevo);
-            
-            for (Pedido aux : pedido.listarPedidoPorMesa(objetoMesa.getIdMesa())) {
-                if (!aux.isCobrada()) {
-                    todosCobrados = false;
-                    break;
+        try {
+            int idped = (Integer) TablaPedido.getValueAt(TablaPedido.getSelectedRow(), 0);
+            Pedido nuevo = pedido.buscarPedido(idped);
+            boolean todosCobrados = true;
+            if (nuevo.isCobrada()) {
+                JOptionPane.showMessageDialog(this, "Este pedido se encuentra cobrado!");
+            } else {
+                nuevo.setCobrada(true);
+                pedido.modificarPedido(nuevo);
+
+                for (Pedido aux : pedido.listarPedidoPorMesa(objetoMesa.getIdMesa())) {
+                    if (!aux.isCobrada()) {
+                        todosCobrados = false;
+                        break;
+                    }
+                }
+
+                if (todosCobrados) {
+                    objetoMesa.setDisponibilidad(true);
+                    mesa.modificarMesa(objetoMesa);
+                    Lockdisponibilidad.setText("Libre");
                 }
             }
-
-            if (todosCobrados) {
-                objetoMesa.setDisponibilidad(true);
-                mesa.modificarMesa(objetoMesa);
-                Lockdisponibilidad.setText("Libre");
-            }
+        } catch (ArrayIndexOutOfBoundsException aioobex) {
+            JOptionPane.showMessageDialog(this, "Debe existir un pedido en la tabla Pedidos para poder Cobrar");
         }
         
         total.setText(0 + "");
