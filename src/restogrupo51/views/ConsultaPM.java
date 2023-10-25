@@ -40,6 +40,7 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Consulta");
 
         jlTitulo.setBackground(new java.awt.Color(255, 205, 110));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -113,8 +114,18 @@ public class ConsultaPM extends javax.swing.JInternalFrame {
             
             String mesero = jtfMesero.getText();
             
-            for (Pedido p :ppData.obtenerPedidosXMesero(mesero) ) {
-                modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa().getNumeroMesa(),p.getFechaHoraPedido(),p.getImporte(),p.isCobrada()});
+            if(mesero.equals("")){
+                JOptionPane.showMessageDialog(this, "Debe completar el campo Mesero");
+            }else{
+                for (Pedido p :ppData.obtenerPedidosXMesero(mesero) ) {
+                    String cobrada;
+                    if(p.isCobrada() == true){
+                        cobrada= "Si";
+                    }else{
+                        cobrada= "No";
+                    }
+                    modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa().getNumeroMesa(),p.getFechaHoraPedido(),p.getImporte(),cobrada});
+                }
             }
 
         }catch(NullPointerException ex){

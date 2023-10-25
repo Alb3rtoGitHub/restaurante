@@ -44,6 +44,7 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
         jtPedido = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Consulta");
 
         jlTitulo.setBackground(new java.awt.Color(255, 205, 110));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -130,10 +131,21 @@ public class ConsultaPCMF extends javax.swing.JInternalFrame {
             borrarFilas();
 
             String mesero = jtfMesero.getText();
-            LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             
-            for (Pedido p :ppData.listarPedidosXMeseroYFecha(mesero, fecha) ) {
-                modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa().getNumeroMesa(),p.getFechaHoraPedido(),p.getImporte(),p.isCobrada()});
+            if(mesero.equals("")){
+                JOptionPane.showMessageDialog(this, "Debe completar el campo Mesero.");
+            }else{
+                LocalDate fecha = jdcFecha.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                for (Pedido p :ppData.listarPedidosXMeseroYFecha(mesero, fecha) ) {
+                    String cobrada;
+                    if(p.isCobrada() == true){
+                        cobrada= "Si";
+                    }else{
+                        cobrada= "No";
+                    }
+                    modelo.addRow(new Object[]{p.getIdPedido(),p.getMesa().getNumeroMesa(),p.getFechaHoraPedido(),p.getImporte(),cobrada});
+                }
             }
 
         }catch(NullPointerException ex){

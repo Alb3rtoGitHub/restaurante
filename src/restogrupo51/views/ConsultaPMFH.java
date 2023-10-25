@@ -5,7 +5,6 @@ package restogrupo51.views;
 import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import restogrupo51.accesoAdatos.PedidoProductoData;
@@ -47,6 +46,7 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
         jtPedido = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Consulta");
 
         jlTitulo.setBackground(new java.awt.Color(255, 205, 110));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,11 +151,17 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
             LocalDateTime fecha2 = jdcFechaFin.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
             for (Pedido p :ppData.listarPedidosXMesaEntreFechaYHora(mesa, fecha1, fecha2) ) {
-                modelo.addRow(new Object[]{p.getIdPedido(),p.getNombreMesero(),p.getFechaHoraPedido(),p.getImporte(),p.isCobrada()});
+                String cobrada;
+                if(p.isCobrada() == true){
+                    cobrada= "Si";
+                }else{
+                    cobrada= "No";
+                }
+                modelo.addRow(new Object[]{p.getIdPedido(),p.getNombreMesero(),p.getFechaHoraPedido(),p.getImporte(),cobrada});
             }
 
         }catch(NullPointerException ex){
-            JOptionPane.showMessageDialog(this, "Debe completar el campo Mesero y seleccionar una Fecha.");
+            JOptionPane.showMessageDialog(this, "Debe completar el campo Mesa y seleccionar las Fechas de Inicio y Fin de la consulta.");
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Ingrese un numero de mesa valido.");
         }

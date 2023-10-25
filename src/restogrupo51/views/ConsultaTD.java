@@ -33,6 +33,7 @@ public class ConsultaTD extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(204, 204, 204));
         setClosable(true);
+        setTitle("Consulta");
 
         jLabel1.setBackground(new java.awt.Color(255, 205, 110));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

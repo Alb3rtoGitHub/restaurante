@@ -38,6 +38,7 @@ public class ConsultaPCP extends javax.swing.JInternalFrame {
         jtPedido = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Consulta");
 
         jlTitulo.setBackground(new java.awt.Color(255, 205, 110));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -93,8 +94,13 @@ public class ConsultaPCP extends javax.swing.JInternalFrame {
         try{
             
             for (PedidoProducto p :ppData.obtenerPedidosConProductos() ) {
-                
-                modelo.addRow(new Object[]{p.getPedido().getIdPedido(),p.getPedido().getMesa().getNumeroMesa(),p.getPedido().getNombreMesero(),p.getPedido().getFechaHoraPedido(),p.getPedido().getImporte(),p.getPedido().isCobrada(), p.getProducto().getNombreProducto(),p.getProducto().getPrecio(),p.getCantidad()});
+                String cobrada;
+                if(p.getPedido().isCobrada() == true){
+                    cobrada= "Si";
+                }else{
+                    cobrada= "No";
+                }
+                modelo.addRow(new Object[]{p.getPedido().getIdPedido(),p.getPedido().getMesa().getNumeroMesa(),p.getPedido().getNombreMesero(),p.getPedido().getFechaHoraPedido(),p.getPedido().getImporte(),cobrada, p.getProducto().getNombreProducto(),p.getProducto().getPrecio(),p.getCantidad()});
             }
                         
         }catch(NullPointerException ex){

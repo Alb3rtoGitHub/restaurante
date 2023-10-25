@@ -40,6 +40,7 @@ public class ConsultaPP extends javax.swing.JInternalFrame {
         jtProducto = new javax.swing.JTable();
 
         setClosable(true);
+        setTitle("Consulta");
 
         jlTitulo.setBackground(new java.awt.Color(255, 205, 110));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
