@@ -66,6 +66,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jbtnEliminar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Gestor de Productos");
         setPreferredSize(new java.awt.Dimension(785, 500));
 
         jtblProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -270,7 +271,6 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jbtnEliminar.setBackground(new java.awt.Color(255, 205, 110));
         jbtnEliminar.setText("Eliminar");
         jbtnEliminar.setName(""); // NOI18N
-        jbtnEliminar.setOpaque(false);
         jbtnEliminar.setPreferredSize(new java.awt.Dimension(85, 26));
         jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,6 +332,11 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 jtxtNombre.setText(producto.getNombreProducto());
                 jtxtPrecio.setText(String.valueOf(producto.getPrecio()));
                 jtxtStock.setText(String.valueOf(producto.getStock()));
+                if(producto.isEstadoProducto() == true){
+                    jbtnEliminar.setText("Eliminar");
+                }else{
+                    jbtnEliminar.setText("Restaurar");
+                }
             }
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(this, "Debe ingresar un número entero");
@@ -375,6 +380,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 productoData.eliminarProducto(prodBuscar.getIdProducto());
             else
                 productoData.restaurarProducto(prodBuscar.getIdProducto());
+                jbtnEliminar.setText("Eliminar");
         } else {
             try{
                 Producto productoBuscado = productoData.buscarProducto(Integer.parseInt(jtxtId.getText()));
@@ -383,9 +389,10 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         productoData.eliminarProducto(productoBuscado.getIdProducto());
                     else
                         productoData.restaurarProducto(productoBuscado.getIdProducto());
+                        jbtnEliminar.setText("Eliminar");
                 }
             }catch(NumberFormatException ex){
-                JOptionPane.showMessageDialog(this, "Debe ingresar un numero entero en Buscar");
+                JOptionPane.showMessageDialog(this, "Debe Buscar un producto o seleccionar un producto de la tabla");
             }
         }
         borrarFilas();
@@ -421,6 +428,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
 
     private void jbtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLimpiarActionPerformed
       borrarDatos();
+      if (jtblProductos.getSelectedRow() ==-1)
+            jbtnEliminar.setText("Eliminar");
     }//GEN-LAST:event_jbtnLimpiarActionPerformed
 
     private void jtxtBuscarIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtxtBuscarIdMouseClicked
@@ -452,6 +461,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
                     jbtnEliminar.setText("Restaurar");
                 }
             }
+        } else {
+            jbtnEliminar.setText("Eliminar");
         }
     }//GEN-LAST:event_jtblProductosMousePressed
 
@@ -462,7 +473,8 @@ public class ProductosView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtxtBuscarCodigoMouseClicked
 
     private void jbtnBuscarPorCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBuscarPorCodigoActionPerformed
-        try{
+            
+        if (!jtxtBuscarCodigo.getText().equals("")) {
             Producto producto = new Producto();
             ProductoData productoData = new ProductoData();
             
@@ -473,9 +485,13 @@ public class ProductosView extends javax.swing.JInternalFrame {
                 jtxtNombre.setText(String.valueOf(producto.getNombreProducto()));
                 jtxtPrecio.setText(String.valueOf(producto.getPrecio()));
                 jtxtStock.setText(String.valueOf(producto.getStock()));
-
+                if(producto.isEstadoProducto() == true){
+                    jbtnEliminar.setText("Eliminar");
+                }else{
+                    jbtnEliminar.setText("Restaurar");
+                }
             }
-        }catch(NumberFormatException ex){
+        } else {
             JOptionPane.showMessageDialog(this, "Debe ingresar un Código");
         }
     }//GEN-LAST:event_jbtnBuscarPorCodigoActionPerformed
