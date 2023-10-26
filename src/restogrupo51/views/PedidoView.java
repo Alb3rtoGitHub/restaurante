@@ -788,7 +788,10 @@ public class PedidoView extends javax.swing.JInternalFrame {
             ListaDeMesa();
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error al llenar campos, verifique que este seleccionado un ID para modificar!");
+        }catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(this, "Verifique el campo Fecha!");
         }
+        
     }//GEN-LAST:event_ModificarActionPerformed
     //Elimina un pedido
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
