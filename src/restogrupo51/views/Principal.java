@@ -449,19 +449,17 @@ public class Principal extends javax.swing.JFrame {
     public void ActDescBotones(javax.swing.JToggleButton TBSelect){
 
         if (TBSelect.isSelected()) {
-            int aux = 0;
             
             for (javax.swing.JToggleButton botones : TB){
-                TB[aux].setSelected(false);
-                if (TB[aux].isEnabled()){
-                    if (mesaData.buscarMesaPorNumero(Integer.parseInt(TB[aux].getText().split(" ")[1])).isDisponibilidad())
-                        TB[aux].setBackground(new Color(156, 255, 51));// Verde Libre
+                botones.setSelected(false);
+                if (botones.isEnabled()){
+                    if (mesaData.buscarMesaPorNumero(Integer.parseInt(botones.getText().split(" ")[1])).isDisponibilidad())
+                        botones.setBackground(new Color(156, 255, 51));// Verde Libre
                     else
-                        TB[aux].setBackground(new Color(255,51,0));//Rojo Ocupada
+                        botones.setBackground(new Color(255,51,0));//Rojo Ocupada
                 }
 
-                //TB[aux].setBackground(new Color(255,255,204));//color normal
-                aux++;
+                //botones.setBackground(new Color(255,255,204));//color normal
             }
 
             //TBSelect.setBackground(new Color(156, 255, 51)); //Verde Color de activado

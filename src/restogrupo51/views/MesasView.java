@@ -377,13 +377,13 @@ public class MesasView extends javax.swing.JInternalFrame {
             Mesa mesa = new Mesa(numero,capacidad,disponibilidad,true);
             MesaData mesaData = new MesaData();
             
-            if (mesaData.cantidadMesa()<=8){
+            if (mesaData.cantidadMesa()<8){
                 if (mesa != null) {
                     mesaData.guardarMesa(mesa);
                 }
             }
             else {
-                JOptionPane.showMessageDialog(this, "No se pueden Agregar mas de 8 Mesas. Restaure Mesas Eliminadas si nececita.");
+                JOptionPane.showMessageDialog(this, "No se pueden Agregar mas de 8 Mesas. Restaure Mesas Eliminadas si necesita.");
             }
  
             borrarFilas();
