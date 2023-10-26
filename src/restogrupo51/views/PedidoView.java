@@ -628,6 +628,15 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 String mesero = nuevo.getNombreMesero();
                 CampoMesero.setText(mesero);
 
+            } else {
+                borrarFilas2();
+                mas.setEnabled(false);
+                menos.setEnabled(false);
+                ModificarCantidad.setEnabled(false);
+                contador.setText("");
+                CampoID.setText("");
+                CampoMesero.setText("");
+                total.setText(0 + "");
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error " + ex.getMessage());
@@ -641,6 +650,11 @@ public class PedidoView extends javax.swing.JInternalFrame {
             mas.setEnabled(true);
             menos.setEnabled(true);
             ModificarCantidad.setEnabled(true);
+        } else {
+            mas.setEnabled(false);
+            menos.setEnabled(false);
+            ModificarCantidad.setEnabled(false);
+            contador.setText("");
         }
     }//GEN-LAST:event_TablaProductoMouseClicked
     //Suma 1 a cantidad
