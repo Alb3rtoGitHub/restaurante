@@ -2,6 +2,8 @@ package restogrupo51.accesoAdatos;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import restogrupo51.entidades.Producto;
@@ -183,6 +185,17 @@ public class ProductoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a tabla Producto " + ex.getMessage());
         }
         
+        Collections.sort(productos, comparadorProducto);
         return productos;
     }
+    
+    Comparator<Producto> comparadorProducto = new Comparator<Producto>() {
+        @Override
+        public int compare(Producto a1, Producto a2) {
+            // Compara por Codigo
+            int comparacionPorCodigo = a1.getCodigoProducto().compareTo(a2.getCodigoProducto());
+
+            return comparacionPorCodigo;
+        }
+    };
 }
