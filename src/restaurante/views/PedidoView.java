@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package restogrupo51.views;
+package restaurante.views;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -18,14 +18,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import restogrupo51.accesoAdatos.MesaData;
-import restogrupo51.accesoAdatos.PedidoData;
-import restogrupo51.accesoAdatos.PedidoProductoData;
-import restogrupo51.accesoAdatos.ProductoData;
-import restogrupo51.entidades.Mesa;
-import restogrupo51.entidades.Pedido;
-import restogrupo51.entidades.PedidoProducto;
-import restogrupo51.entidades.Producto;
+import restaurante.accesoAdatos.MesaData;
+import restaurante.accesoAdatos.PedidoData;
+import restaurante.accesoAdatos.PedidoProductoData;
+import restaurante.accesoAdatos.ProductoData;
+import restaurante.entidades.Mesa;
+import restaurante.entidades.Pedido;
+import restaurante.entidades.PedidoProducto;
+import restaurante.entidades.Producto;
 
 /**
  *

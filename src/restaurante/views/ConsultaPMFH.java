@@ -1,5 +1,5 @@
 
-package restogrupo51.views;
+package restaurante.views;
 
 
 import java.awt.Color;
@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import restogrupo51.accesoAdatos.PedidoProductoData;
-import restogrupo51.entidades.Pedido;
+import restaurante.accesoAdatos.PedidoProductoData;
+import restaurante.entidades.Pedido;
 
 
 public class ConsultaPMFH extends javax.swing.JInternalFrame {

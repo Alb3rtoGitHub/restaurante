@@ -1,12 +1,12 @@
 
-package restogrupo51.views;
+package restaurante.views;
 
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import restogrupo51.accesoAdatos.PedidoProductoData;
-import restogrupo51.entidades.PedidoProducto;
+import restaurante.accesoAdatos.PedidoProductoData;
+import restaurante.entidades.PedidoProducto;
 
 
 public class ConsultaPCP extends javax.swing.JInternalFrame {

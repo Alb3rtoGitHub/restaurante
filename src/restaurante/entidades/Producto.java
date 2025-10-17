@@ -1,5 +1,5 @@
 
-package restogrupo51.entidades;
+package restaurante.entidades;
 
 public class Producto {
     private int idProducto;

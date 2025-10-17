@@ -1,5 +1,5 @@
 
-package restogrupo51.accesoAdatos;
+package restaurante.accesoAdatos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import restogrupo51.entidades.Mesa;
+import restaurante.entidades.Mesa;
 
 
 public class MesaData {

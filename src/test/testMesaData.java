@@ -1,8 +1,8 @@
 
 package test;
 
-import restogrupo51.accesoAdatos.MesaData;
-import restogrupo51.entidades.Mesa;
+import restaurante.accesoAdatos.MesaData;
+import restaurante.entidades.Mesa;
 
 
 public class testMesaData {

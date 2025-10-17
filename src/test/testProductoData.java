@@ -1,7 +1,7 @@
 package test;
 
-import restogrupo51.accesoAdatos.ProductoData;
-import restogrupo51.entidades.Producto;
+import restaurante.accesoAdatos.ProductoData;
+import restaurante.entidades.Producto;
 
 public class testProductoData {
     public static void main(String[] args) {

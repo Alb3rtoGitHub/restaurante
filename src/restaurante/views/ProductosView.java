@@ -1,5 +1,5 @@
 
-package restogrupo51.views;
+package restaurante.views;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -8,8 +8,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
-import restogrupo51.accesoAdatos.ProductoData;
-import restogrupo51.entidades.Producto;
+import restaurante.accesoAdatos.ProductoData;
+import restaurante.entidades.Producto;
 
 public class ProductosView extends javax.swing.JInternalFrame {
     ProductoData producto = new ProductoData();

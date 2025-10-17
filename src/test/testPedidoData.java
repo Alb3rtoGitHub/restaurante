@@ -1,10 +1,10 @@
 package test;
 
 import java.time.LocalDateTime;
-import restogrupo51.accesoAdatos.MesaData;
-import restogrupo51.accesoAdatos.PedidoData;
-import restogrupo51.entidades.Mesa;
-import restogrupo51.entidades.Pedido;
+import restaurante.accesoAdatos.MesaData;
+import restaurante.accesoAdatos.PedidoData;
+import restaurante.entidades.Mesa;
+import restaurante.entidades.Pedido;
 
 public class testPedidoData {
     public static void main(String[] args) {

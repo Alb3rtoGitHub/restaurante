@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package restogrupo51.views;
+package restaurante.views;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import restogrupo51.accesoAdatos.MesaData;
-import restogrupo51.entidades.Mesa;
+import restaurante.accesoAdatos.MesaData;
+import restaurante.entidades.Mesa;
 
 
 
@@ -23,6 +23,16 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() {
         initComponents();
+        
+        // 🔹 Establece el título de la ventana
+        setTitle("Gestión de Restó");
+
+        // Cierra la app al presionar la X
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
+        // Centra la ventana en la pantalla
+        setLocationRelativeTo(null);
+        
         TB[0] = TBmesa1;
         TB[1] = TBmesa2;
         TB[2] = TBmesa3;

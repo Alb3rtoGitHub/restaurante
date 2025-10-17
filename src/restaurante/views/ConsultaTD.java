@@ -1,12 +1,12 @@
 
-package restogrupo51.views;
+package restaurante.views;
 
 
 import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
-import restogrupo51.accesoAdatos.PedidoProductoData;
+import restaurante.accesoAdatos.PedidoProductoData;
 
 
 public class ConsultaTD extends javax.swing.JInternalFrame {

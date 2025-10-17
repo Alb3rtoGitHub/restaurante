@@ -1,5 +1,5 @@
 
-package restogrupo51.accesoAdatos;
+package restaurante.accesoAdatos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package restogrupo51.accesoAdatos;
+package restaurante.accesoAdatos;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import restogrupo51.entidades.Mesa;
-import restogrupo51.entidades.Pedido;
+import restaurante.entidades.Mesa;
+import restaurante.entidades.Pedido;
 
 public class PedidoData {
     private Connection con = null;

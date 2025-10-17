@@ -1,4 +1,4 @@
-package restogrupo51.views;
+package restaurante.views;
 
 import java.awt.Color;
 import java.awt.Dimension;

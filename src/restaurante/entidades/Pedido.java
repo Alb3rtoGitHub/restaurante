@@ -1,4 +1,4 @@
-package restogrupo51.entidades;
+package restaurante.entidades;
 
 import java.time.LocalDateTime;
 

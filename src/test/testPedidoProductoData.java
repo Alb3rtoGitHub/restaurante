@@ -7,12 +7,12 @@ package test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import restogrupo51.accesoAdatos.MesaData;
-import restogrupo51.accesoAdatos.PedidoData;
-import restogrupo51.accesoAdatos.PedidoProductoData;
-import restogrupo51.accesoAdatos.ProductoData;
-import restogrupo51.entidades.Pedido;
-import restogrupo51.entidades.PedidoProducto;
+import restaurante.accesoAdatos.MesaData;
+import restaurante.accesoAdatos.PedidoData;
+import restaurante.accesoAdatos.PedidoProductoData;
+import restaurante.accesoAdatos.ProductoData;
+import restaurante.entidades.Pedido;
+import restaurante.entidades.PedidoProducto;
 
 /**
  *

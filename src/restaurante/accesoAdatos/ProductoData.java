@@ -1,4 +1,4 @@
-package restogrupo51.accesoAdatos;
+package restaurante.accesoAdatos;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.JOptionPane;
-import restogrupo51.entidades.Producto;
+import restaurante.entidades.Producto;
 
 public class ProductoData {
 
