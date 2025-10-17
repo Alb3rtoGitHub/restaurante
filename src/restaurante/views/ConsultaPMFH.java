@@ -24,7 +24,7 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
     
     public ConsultaPMFH() {
         initComponents();
-        getContentPane().setBackground(new Color(255,255,255));
+        getContentPane().setBackground(new Color(153,153,153));
         armarCabecera();
         tamañoColumnas();
     }
@@ -48,7 +48,7 @@ public class ConsultaPMFH extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Consulta");
 
-        jlTitulo.setBackground(new java.awt.Color(255, 205, 110));
+        jlTitulo.setBackground(new java.awt.Color(153, 153, 153));
         jlTitulo.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo.setText("Pedidos por Mesa en una Fecha entre Horas");

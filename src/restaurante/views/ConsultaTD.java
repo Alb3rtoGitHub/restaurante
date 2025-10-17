@@ -15,7 +15,7 @@ public class ConsultaTD extends javax.swing.JInternalFrame {
     
     public ConsultaTD() {
         initComponents();
-        getContentPane().setBackground(new Color(255,255,255));
+        getContentPane().setBackground(new Color(153,153,153));
     }
 
     
@@ -35,7 +35,7 @@ public class ConsultaTD extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Consulta");
 
-        jLabel1.setBackground(new java.awt.Color(255, 205, 110));
+        jLabel1.setBackground(new java.awt.Color(153, 153, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Ingreso Total de una Fecha");

@@ -33,6 +33,8 @@ public class Principal extends javax.swing.JFrame {
         // Centra la ventana en la pantalla
         setLocationRelativeTo(null);
         
+        //jPanel1.setOpaque(false); // para fondo transparente donde estan las mesas o tocar propiedad opaque en modo diseño
+        
         TB[0] = TBmesa1;
         TB[1] = TBmesa2;
         TB[2] = TBmesa3;
@@ -80,7 +82,8 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 205, 110));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
+        jPanel1.setOpaque(false);
 
         TBmesa1.setBackground(new java.awt.Color(255, 255, 204));
         TBmesa1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon.png"))); // NOI18N
@@ -221,7 +224,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        jbtnProductos.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnProductos.setBackground(new java.awt.Color(153, 153, 153));
         jbtnProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
         jbtnProductos.setText("Productos");
         jbtnProductos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -232,7 +235,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jbtnMesas.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnMesas.setBackground(new java.awt.Color(153, 153, 153));
         jbtnMesas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/mesaIcon2.png"))); // NOI18N
         jbtnMesas.setText("Mesas");
         jbtnMesas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -243,7 +246,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        Bpedidos.setBackground(new java.awt.Color(255, 205, 110));
+        Bpedidos.setBackground(new java.awt.Color(153, 153, 153));
         Bpedidos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pedidosIcon.png"))); // NOI18N
         Bpedidos.setText("Pedidos");
         Bpedidos.setEnabled(false);
@@ -254,7 +257,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jbtnConsultas.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnConsultas.setBackground(new java.awt.Color(153, 153, 153));
         jbtnConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consultaIcon.png"))); // NOI18N
         jbtnConsultas.setText("Consultas");
         jbtnConsultas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -332,11 +335,6 @@ public class Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TBmesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa1ActionPerformed
-        //TBmesa2.setEnabled(false);
-        ActDescBotones(TBmesa1);
-    }//GEN-LAST:event_TBmesa1ActionPerformed
-
     private void jbtnMesasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnMesasActionPerformed
         escritorio.repaint();
         MesasView MsV = new MesasView(this);
@@ -344,34 +342,6 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(MsV);
         escritorio.moveToFront(MsV);
     }//GEN-LAST:event_jbtnMesasActionPerformed
-
-    private void TBmesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa3ActionPerformed
-        ActDescBotones(TBmesa3);
-    }//GEN-LAST:event_TBmesa3ActionPerformed
-
-    private void TBmesa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa4ActionPerformed
-        ActDescBotones(TBmesa4);
-    }//GEN-LAST:event_TBmesa4ActionPerformed
-
-    private void TBmesa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa2ActionPerformed
-        ActDescBotones(TBmesa2);
-    }//GEN-LAST:event_TBmesa2ActionPerformed
-
-    private void TBmesa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa6ActionPerformed
-        ActDescBotones(TBmesa6);
-    }//GEN-LAST:event_TBmesa6ActionPerformed
-
-    private void TBmesa8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa8ActionPerformed
-        ActDescBotones(TBmesa8);
-    }//GEN-LAST:event_TBmesa8ActionPerformed
-
-    private void TBmesa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa5ActionPerformed
-        ActDescBotones(TBmesa5);
-    }//GEN-LAST:event_TBmesa5ActionPerformed
-
-    private void TBmesa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa7ActionPerformed
-        ActDescBotones(TBmesa7);
-    }//GEN-LAST:event_TBmesa7ActionPerformed
 
     private void jbtnConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConsultasActionPerformed
         escritorio.repaint();
@@ -400,6 +370,39 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(PrV);
         escritorio.moveToFront(PrV);
     }//GEN-LAST:event_jbtnProductosActionPerformed
+
+    private void TBmesa7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa7ActionPerformed
+        ActDescBotones(TBmesa7);
+    }//GEN-LAST:event_TBmesa7ActionPerformed
+
+    private void TBmesa5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa5ActionPerformed
+        ActDescBotones(TBmesa5);
+    }//GEN-LAST:event_TBmesa5ActionPerformed
+
+    private void TBmesa8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa8ActionPerformed
+        ActDescBotones(TBmesa8);
+    }//GEN-LAST:event_TBmesa8ActionPerformed
+
+    private void TBmesa6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa6ActionPerformed
+        ActDescBotones(TBmesa6);
+    }//GEN-LAST:event_TBmesa6ActionPerformed
+
+    private void TBmesa2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa2ActionPerformed
+        ActDescBotones(TBmesa2);
+    }//GEN-LAST:event_TBmesa2ActionPerformed
+
+    private void TBmesa4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa4ActionPerformed
+        ActDescBotones(TBmesa4);
+    }//GEN-LAST:event_TBmesa4ActionPerformed
+
+    private void TBmesa3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa3ActionPerformed
+        ActDescBotones(TBmesa3);
+    }//GEN-LAST:event_TBmesa3ActionPerformed
+
+    private void TBmesa1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TBmesa1ActionPerformed
+        //TBmesa2.setEnabled(false);
+        ActDescBotones(TBmesa1);
+    }//GEN-LAST:event_TBmesa1ActionPerformed
 
     /**
      * @param args the command line arguments

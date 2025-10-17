@@ -17,7 +17,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
     public ConsultasView() {
         initComponents();
         comboBox();
-        getContentPane().setBackground(new Color(255,205,110));
+        getContentPane().setBackground(new Color(153,153,153));
     }
 
     
@@ -42,7 +42,7 @@ public class ConsultasView extends javax.swing.JInternalFrame {
             }
         });
 
-        panelConsultas.setBackground(new java.awt.Color(255, 205, 110));
+        panelConsultas.setBackground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout panelConsultasLayout = new javax.swing.GroupLayout(panelConsultas);
         panelConsultas.setLayout(panelConsultasLayout);

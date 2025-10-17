@@ -28,7 +28,7 @@ public class MesasView extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarTabla();
-        getContentPane().setBackground(new Color(255,205,110));
+        getContentPane().setBackground(new Color(153,153,153));
             
         // Cambiar el color de fondo de las cabeceras de columna
         JTableHeader header = jtblMesa.getTableHeader();
@@ -98,7 +98,7 @@ public class MesasView extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jtblMesa);
 
-        jbtnEliminar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnEliminar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnEliminar.setText("Eliminar");
         jbtnEliminar.setPreferredSize(new java.awt.Dimension(85, 26));
         jbtnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel1.setBackground(new java.awt.Color(255, 205, 110));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -128,7 +128,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnGuardar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnGuardar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnGuardar.setText("Guardar");
         jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +144,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnBuscarPorId.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnBuscarPorId.setBackground(new java.awt.Color(153, 153, 153));
         jbtnBuscarPorId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar16px.png"))); // NOI18N
         jbtnBuscarPorId.setText("ID");
         jbtnBuscarPorId.addActionListener(new java.awt.event.ActionListener() {
@@ -153,7 +153,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnLimpiar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnLimpiar.setText("Limpiar");
         jbtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,7 +161,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnModificar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnModificar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnModificar.setText("Modificar");
         jbtnModificar.setEnabled(false);
         jbtnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -184,7 +184,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnBuscarPorNumero.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnBuscarPorNumero.setBackground(new java.awt.Color(153, 153, 153));
         jbtnBuscarPorNumero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar16px.png"))); // NOI18N
         jbtnBuscarPorNumero.setText("#");
         jbtnBuscarPorNumero.addActionListener(new java.awt.event.ActionListener() {
@@ -620,7 +620,7 @@ public class MesasView extends javax.swing.JInternalFrame {
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Cambiar el color de fondo de la cabecera de columna
-            c.setBackground(new java.awt.Color(255,205,110)); // Cambia este color según tus preferencias
+            c.setBackground(new java.awt.Color(153,153,153)); // Cambia este color según tus preferencias
 
             return c;
         }

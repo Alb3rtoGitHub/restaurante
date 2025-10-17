@@ -25,7 +25,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         initComponents();
         armarCabecera();
         cargarTabla();
-        getContentPane().setBackground(new Color(255,205,110));
+        getContentPane().setBackground(new Color(153,153,153));
         
         // Cambiar el color de fondo de las cabeceras de columna
         JTableHeader header = jtblProductos.getTableHeader();
@@ -91,7 +91,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
         jLabel1.setText("Productos");
 
-        jPanel1.setBackground(new java.awt.Color(255, 205, 110));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -114,7 +114,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnGuardar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnGuardar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnGuardar.setText("Guardar");
         jbtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +130,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnBuscarId.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnBuscarId.setBackground(new java.awt.Color(153, 153, 153));
         jbtnBuscarId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar16px.png"))); // NOI18N
         jbtnBuscarId.setText("ID");
         jbtnBuscarId.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +139,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnLimpiar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnLimpiar.setText("Limpiar");
         jbtnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,7 +147,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnModificar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnModificar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnModificar.setText("Modificar");
         jbtnModificar.setEnabled(false);
         jbtnModificar.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +164,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             }
         });
 
-        jbtnBuscarPorCodigo.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnBuscarPorCodigo.setBackground(new java.awt.Color(153, 153, 153));
         jbtnBuscarPorCodigo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/buscar16px.png"))); // NOI18N
         jbtnBuscarPorCodigo.setText("Cod");
         jbtnBuscarPorCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -268,7 +268,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        jbtnEliminar.setBackground(new java.awt.Color(255, 205, 110));
+        jbtnEliminar.setBackground(new java.awt.Color(153, 153, 153));
         jbtnEliminar.setText("Eliminar");
         jbtnEliminar.setName(""); // NOI18N
         jbtnEliminar.setPreferredSize(new java.awt.Dimension(85, 26));
@@ -573,7 +573,7 @@ public class ProductosView extends javax.swing.JInternalFrame {
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Cambiar el color de fondo de la cabecera de columna
-            c.setBackground(new java.awt.Color(255,205,110)); // Cambia este color según tus preferencias
+            c.setBackground(new java.awt.Color(153,153,153)); // Cambia este color según tus preferencias
 
             return c;
         }

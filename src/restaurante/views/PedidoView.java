@@ -75,7 +75,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         menos.setEnabled(false);
         ModificarCantidad.setEnabled(false);
         //Coloca color a los cabezales de las tablas
-        getContentPane().setBackground(new Color(255, 205, 110));
+        getContentPane().setBackground(new Color(153, 153, 153));
         JTableHeader header = TablaPedido.getTableHeader();
         JTableHeader header2 = TablaProducto.getTableHeader();
         header.setDefaultRenderer(new CustomHeaderRenderer());
@@ -139,6 +139,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         Eliminar = new javax.swing.JButton();
         Cobrar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 153, 153));
         setClosable(true);
         setTitle("Pedidos");
 
@@ -178,7 +179,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(TablaProducto);
 
-        jPanel1.setBackground(new java.awt.Color(255, 205, 110));
+        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
@@ -192,7 +193,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
 
         CampoNumeroMesa.setEditable(false);
 
-        Limpiar.setBackground(new java.awt.Color(255, 205, 110));
+        Limpiar.setBackground(new java.awt.Color(153, 153, 153));
         Limpiar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Limpiar.setText("Limpiar");
         Limpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +211,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         MenuProductos.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jScrollPane3.setViewportView(MenuProductos);
 
-        registrar.setBackground(new java.awt.Color(255, 205, 110));
+        registrar.setBackground(new java.awt.Color(153, 153, 153));
         registrar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         registrar.setText("Registrar");
         registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +220,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
-        Modificar.setBackground(new java.awt.Color(255, 205, 110));
+        Modificar.setBackground(new java.awt.Color(153, 153, 153));
         Modificar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +247,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(CampoFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(CampoNumeroMesa, javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +335,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel3.setText("$");
 
-        ModificarCantidad.setBackground(new java.awt.Color(255, 205, 110));
+        ModificarCantidad.setBackground(new java.awt.Color(153, 153, 153));
         ModificarCantidad.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         ModificarCantidad.setText("Modificar Cantidad");
         ModificarCantidad.addActionListener(new java.awt.event.ActionListener() {
@@ -348,7 +349,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/productIcon3.png"))); // NOI18N
         jLabel2.setText("PRODUCTOS");
 
-        jPanel2.setBackground(new java.awt.Color(255, 205, 110));
+        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         LockLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -414,7 +415,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
                 .addGap(13, 13, 13))
         );
 
-        Eliminar.setBackground(new java.awt.Color(255, 205, 110));
+        Eliminar.setBackground(new java.awt.Color(153, 153, 153));
         Eliminar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Eliminar.setText("¡Eliminar Pedido!");
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -423,7 +424,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             }
         });
 
-        Cobrar.setBackground(new java.awt.Color(255, 205, 110));
+        Cobrar.setBackground(new java.awt.Color(153, 153, 153));
         Cobrar.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Cobrar.setText("Cobrar");
         Cobrar.addActionListener(new java.awt.event.ActionListener() {
@@ -964,7 +965,7 @@ public class PedidoView extends javax.swing.JInternalFrame {
             Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Cambiar el color de fondo de la cabecera de columna
-            c.setBackground(new java.awt.Color(255, 205, 110)); // Cambia este color según tus preferencias
+            c.setBackground(new java.awt.Color(153, 153, 153)); // Cambia este color según tus preferencias
 
             return c;
         }
