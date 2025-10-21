@@ -40,25 +40,25 @@ Ideal para restaurantes que buscan digitalizar su atención al cliente y optimiz
 ---
 
 ## 🗂️ Estructura del Proyecto
-
+```
 GestionResto/
 
 ├── src/
 
-│ ├── restaurante
+│    └── restaurante/
 
-│   ├── entidades/ Modelo # Clases del dominio: Mesa, Producto, Pedido, PedidoProducto.
+│        ├── entidades/ Modelo # Clases del dominio: Mesa, Producto, Pedido, PedidoProducto.
 
-│   ├── accesoAdatos/ Datos # Clases DAO: Conexion, MesaData, ProductoData, PedidoData, PedidoProductoData
+│        ├── accesoAdatos/ Datos # Clases DAO: Conexion, MesaData, ProductoData, PedidoData, PedidoProductoData
 
-│   ├── views/ Vistas # Interfaces gráficas (JFrames, JDialogs)
+│        ├── views/ Vistas # Interfaces gráficas (JFrames, JDialogs)
 
-│ └── imagenes/ # Recursos gráficos (incl. Principal.png)
+│    └── imagenes/ # Recursos gráficos (incl. Principal.png)
 
 ├── informacion/ # Scripts SQL para crear la base de datos
 
 └── README.md
-
+```
 
 ---
 
