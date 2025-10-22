@@ -86,9 +86,64 @@ Además:
 
 ---
 
-## 📸 Vista Previa
+## 🖼️ Vistas Principales
 
 ![Interfaz principal del sistema](src/imagenes/Principal.png)
+> *Vista Principal.*
+
+##
+
+![Seleccion de Mesa](src/imagenes/SeleccionMesa.png)
+> *Seleccion de una mesa (Mesa 1).*
+
+##
+
+![Gestión de Pedidos](src/imagenes/Pedidos.png)
+> *Ingreso de pedido (Mesa 1).*
+
+##
+
+![Gestión de Mesas](src/imagenes/Mesa.png)
+> *Gestión de Mesas (ABM).*
+
+##
+
+![Gestión de Productos](src/imagenes/Producto.png)
+> *Gestión de Productos (ABM).*
+
+##
+
+![Consultas](src/imagenes/Consultas.png)
+> *Vista de Consultas.*
+
+##
+
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+    <img src="src/imagenes/IngresoTotalAFecha.png" alt="Consulta Ingreso Total a una Fecha" width="500" />
+    <img src="src/imagenes/ProductoDePedido.png" alt="Productos de Pedidos" width="500" />
+</div>
+
+> *Consultas de Ingreso Total a una Fecha y Productos de un pedido.*
+
+##
+
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+    <img src="src/imagenes/PedidoConProductos.png" alt="Consulta de Pedidos con Productos" width="500" />
+    <img src="src/imagenes/PedidosPorMesero.png" alt="Consulta de Pedidos por Mesero" width="500" />
+</div>
+
+> *Consultas de Pedidos con Productos y Pedidos por Mesero.*
+
+##
+
+<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+    <img src="src/imagenes/PedidosCobradosPorMesero.png" alt="Consulta de Pedidos cobrados por Mesero" width="500" />
+    <img src="src/imagenes/PedidosPorMesaEntreHoras.png" alt="Consulta de Pedidos por Mesa entre horas" width="500" />
+</div>
+
+> *Consultas de Pedidos cobrados por un Mesero en una fecha y Pedidos por Mesa en una fecha y hora.*
+
+##
 
 ---
 
