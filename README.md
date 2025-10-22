@@ -119,8 +119,8 @@ Además:
 ##
 
 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-    <img src="src/imagenes/IngresoTotalAFecha.png" alt="Consulta Ingreso Total a una Fecha" width="500" />
-    <img src="src/imagenes/ProductoDePedido.png" alt="Productos de Pedidos" width="500" />
+    <img src="src/imagenes/IngresoTotalAFecha.png" alt="Consulta Ingreso Total a una Fecha" width="450" />
+    <img src="src/imagenes/ProductoDePedido.png" alt="Productos de Pedidos" width="450" />
 </div>
 
 > *Consultas de Ingreso Total a una Fecha y Productos de un pedido.*
@@ -128,8 +128,8 @@ Además:
 ##
 
 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-    <img src="src/imagenes/PedidoConProductos.png" alt="Consulta de Pedidos con Productos" width="500" />
-    <img src="src/imagenes/PedidosPorMesero.png" alt="Consulta de Pedidos por Mesero" width="500" />
+    <img src="src/imagenes/PedidoConProductos.png" alt="Consulta de Pedidos con Productos" width="450" />
+    <img src="src/imagenes/PedidosPorMesero.png" alt="Consulta de Pedidos por Mesero" width="450" />
 </div>
 
 > *Consultas de Pedidos con Productos y Pedidos por Mesero.*
@@ -137,8 +137,8 @@ Además:
 ##
 
 <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-    <img src="src/imagenes/PedidosCobradosPorMesero.png" alt="Consulta de Pedidos cobrados por Mesero" width="500" />
-    <img src="src/imagenes/PedidosPorMesaEntreHoras.png" alt="Consulta de Pedidos por Mesa entre horas" width="500" />
+    <img src="src/imagenes/PedidosCobradosPorMesero.png" alt="Consulta de Pedidos cobrados por Mesero" width="450" />
+    <img src="src/imagenes/PedidosPorMesaEntreHoras.png" alt="Consulta de Pedidos por Mesa entre horas" width="450" />
 </div>
 
 > *Consultas de Pedidos cobrados por un Mesero en una fecha y Pedidos por Mesa en una fecha y hora.*
